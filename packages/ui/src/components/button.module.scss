@@ -1,0 +1,157 @@
+@use "../styles/mixins" as mixins;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease;
+
+  @include mixins.control-focus-ring;
+  @include mixins.disabled-state;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--destructive);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 25%, transparent);
+  }
+
+  :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+}
+
+.variantDefault {
+  background: var(--primary);
+  color: var(--primary-foreground);
+
+  &:hover {
+    background: color-mix(in oklab, var(--primary) 88%, black);
+  }
+}
+
+.variantOutline {
+  background: var(--background);
+  border-color: var(--border);
+  color: var(--foreground);
+
+  &:hover,
+  &[aria-expanded="true"] {
+    background: var(--muted);
+  }
+}
+
+.variantSecondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+
+  &:hover,
+  &[aria-expanded="true"] {
+    background: color-mix(in oklab, var(--secondary) 85%, black);
+  }
+}
+
+.variantGhost {
+  background: transparent;
+  color: var(--foreground);
+
+  &:hover,
+  &[aria-expanded="true"] {
+    background: var(--muted);
+  }
+}
+
+.variantDestructive {
+  background: color-mix(in oklab, var(--destructive) 15%, transparent);
+  color: var(--destructive);
+
+  &:hover {
+    background: color-mix(in oklab, var(--destructive) 22%, transparent);
+  }
+}
+
+.variantLink {
+  background: transparent;
+  border-color: transparent;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+.sizeDefault {
+  min-height: 2rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.sizeXs {
+  min-height: 1.5rem;
+  border-radius: min(var(--radius), 0.5rem);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.sizeSm {
+  min-height: 1.75rem;
+  border-radius: min(var(--radius), 0.625rem);
+  padding: 0.3125rem 0.625rem;
+  font-size: 0.8rem;
+}
+
+.sizeLg {
+  min-height: 2.25rem;
+  padding: 0.5rem 0.875rem;
+}
+
+.sizeIcon {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+}
+
+.sizeIconXs {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+
+  :global(svg) {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.sizeIconSm {
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+
+  :global(svg) {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+.sizeIconLg {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+}
+

@@ -1,0 +1,32 @@
+@use "../styles/mixins" as mixins;
+
+.input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2rem;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+
+  @include mixins.control-focus-ring;
+  @include mixins.disabled-state;
+
+  &::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--destructive);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 25%, transparent);
+  }
+
+  &:disabled {
+    background: color-mix(in oklab, var(--input) 60%, transparent);
+  }
+}
+

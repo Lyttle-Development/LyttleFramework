@@ -5,10 +5,17 @@
     "baseUrl": ".",
     "paths": {
       "@lyttle/ui": ["../../packages/ui/src/index.ts"],
-      "@lyttle/ui/*": ["../../packages/ui/src/*"],
-      "@/*": ["../../packages/ui/src/*"]
+      "@lyttle/ui/*": ["../../packages/ui/src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "../../packages/ui/src/**/*.ts",
+    "../../packages/ui/src/**/*.tsx",
+    "../../packages/ui/src/**/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

@@ -1,1 +1,21 @@
 # Lyttle Framework
+
+## Design system source of truth
+
+- Shared components live in `packages/ui/src/components`.
+- Consumer apps (`apps/docs`, `apps/storybook`) should import from `@lyttle/ui`.
+- Shared styles come from `@lyttle/ui/styles`.
+
+## Import conventions
+
+- Preferred: `import { Button } from "@lyttle/ui"`
+- Allowed when needed: deep imports like `@lyttle/ui/components/button`
+- Avoid app-local shadcn-style imports like `@/components/ui/*` in consumers.
+
+## shadcn alignment
+
+- shadcn config is at `apps/docs/components.json`.
+- Aliases are mapped to `@lyttle/ui/*` so generated imports target the shared package.
+- Storybook Vite aliases support both:
+  - `@lyttle/ui`
+  - `@lyttle/ui/*`

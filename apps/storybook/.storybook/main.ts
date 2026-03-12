@@ -37,17 +37,22 @@ const config: StorybookConfig = {
         tailwindcss(),
       ],
       resolve: {
-        alias: {
+        alias: [
           // Keep the same workaround for direct alias lookups.
-          [mdxShimId]: mdxShimPath,
-          "@lyttle/ui/styles": path.resolve(__dirname, "../../../packages/ui/src/styles/globals.css"),
-          "@lyttle/ui": path.resolve(__dirname, "../../../packages/ui/src/index.ts"),
-          // @/components/ui/xxx → packages/ui/src/components/xxx (shadcn path convention)
-          "@/components/ui": path.resolve(__dirname, "../../../packages/ui/src/components"),
-          "@/lib": path.resolve(__dirname, "../../../packages/ui/src/lib"),
-          "@/hooks": path.resolve(__dirname, "../../../packages/ui/src/hooks"),
-          "@": path.resolve(__dirname, "../../../packages/ui/src"),
-        },
+          { find: mdxShimId, replacement: mdxShimPath },
+          {
+            find: "@lyttle/ui/styles",
+            replacement: path.resolve(__dirname, "../../../packages/ui/src/styles/globals.css"),
+          },
+          {
+            find: /^@lyttle\/ui$/,
+            replacement: path.resolve(__dirname, "../../../packages/ui/src/index.ts"),
+          },
+          {
+            find: /^@lyttle\/ui\/(.*)$/,
+            replacement: path.resolve(__dirname, "../../../packages/ui/src/$1"),
+          },
+        ],
       },
     });
   },
