@@ -7,23 +7,23 @@ import { cn } from "../../lib/utils"
 import { Button } from "../button"
 import styles from "./alert-dialog.module.scss"
 
-function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props) {
+export function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
 }
 
-function AlertDialogTrigger({ ...props }: AlertDialogPrimitive.Trigger.Props) {
+export function AlertDialogTrigger({ ...props }: AlertDialogPrimitive.Trigger.Props) {
   return (
     <AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />
   )
 }
 
-function AlertDialogPortal({ ...props }: AlertDialogPrimitive.Portal.Props) {
+export function AlertDialogPortal({ ...props }: AlertDialogPrimitive.Portal.Props) {
   return (
     <AlertDialogPrimitive.Portal data-slot="alert-dialog-portal" {...props} />
   )
 }
 
-function AlertDialogOverlay({
+export function AlertDialogOverlay({
   className,
   ...props
 }: AlertDialogPrimitive.Backdrop.Props) {
@@ -36,7 +36,7 @@ function AlertDialogOverlay({
   )
 }
 
-function AlertDialogContent({
+export function AlertDialogContent({
   className,
   size = "default",
   ...props
@@ -56,7 +56,7 @@ function AlertDialogContent({
   )
 }
 
-function AlertDialogHeader({
+export function AlertDialogHeader({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -69,7 +69,7 @@ function AlertDialogHeader({
   )
 }
 
-function AlertDialogFooter({
+export function AlertDialogFooter({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -82,7 +82,7 @@ function AlertDialogFooter({
   )
 }
 
-function AlertDialogMedia({
+export function AlertDialogMedia({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -95,7 +95,7 @@ function AlertDialogMedia({
   )
 }
 
-function AlertDialogTitle({
+export function AlertDialogTitle({
   className,
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Title>) {
@@ -108,7 +108,7 @@ function AlertDialogTitle({
   )
 }
 
-function AlertDialogDescription({
+export function AlertDialogDescription({
   className,
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Description>) {
@@ -121,7 +121,7 @@ function AlertDialogDescription({
   )
 }
 
-function AlertDialogAction({
+export function AlertDialogAction({
   className,
   ...props
 }: React.ComponentProps<typeof Button>) {
@@ -134,7 +134,7 @@ function AlertDialogAction({
   )
 }
 
-function AlertDialogCancel({
+export function AlertDialogCancel({
   className,
   variant = "outline",
   size = "default",
@@ -151,18 +151,4 @@ function AlertDialogCancel({
   )
 }
 
-export {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogMedia,
-  AlertDialogOverlay,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-}
 
