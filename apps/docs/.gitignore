@@ -1,0 +1,53 @@
+# Node modules
+node_modules
+.pnp
+.pnp.*
+
+# Next.js build outputs
+.next
+out
+.next/
+.vercel
+*.cache
+
+# IDE & Editor files
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+.env.test.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Testing & Coverage
+/coverage
+.nyc_output
+*.lcov
+
+# IDE specific
+.eslintcache
+.stylelintcache
+
