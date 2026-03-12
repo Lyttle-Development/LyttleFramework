@@ -1,0 +1,53 @@
+@use "../../styles/mixins" as mixins;
+
+.textarea {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 4rem;
+  field-sizing: content;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  padding: 0.5rem 0.625rem;
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+
+  @include mixins.control-focus-ring;
+  @include mixins.disabled-state;
+
+  &::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--destructive);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+  }
+
+  &:disabled {
+    background: color-mix(in oklab, var(--input) 50%, transparent);
+  }
+
+  .dark & {
+    background: color-mix(in oklab, var(--input) 30%, transparent);
+
+    &:disabled {
+      background: color-mix(in oklab, var(--input) 80%, transparent);
+    }
+
+    &[aria-invalid="true"] {
+      border-color: color-mix(in oklab, var(--destructive) 50%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .textarea {
+    font-size: 0.875rem;
+  }
+}
+
