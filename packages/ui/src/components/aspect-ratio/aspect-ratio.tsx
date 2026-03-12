@@ -1,4 +1,5 @@
-import { cn } from "../lib/utils"
+import { cn } from "../../lib/utils"
+import styles from "./aspect-ratio.module.scss"
 
 function AspectRatio({
   ratio,
@@ -13,10 +14,11 @@ function AspectRatio({
           "--ratio": ratio,
         } as React.CSSProperties
       }
-      className={cn("relative aspect-(--ratio)", className)}
+      className={cn(styles.aspectRatio, className)}
       {...props}
     />
   )
 }
 
 export { AspectRatio }
+

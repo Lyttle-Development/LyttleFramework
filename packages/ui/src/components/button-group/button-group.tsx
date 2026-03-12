@@ -1,5 +1,6 @@
 import * as React from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
+import styles from "./button-group.module.scss";
 
 export function ButtonGroup({
   children,
@@ -12,7 +13,7 @@ export function ButtonGroup({
     <div
       role="group"
       className={cn(
-        "inline-flex [&>*:not(:first-child)]:-ml-px [&>*:first-child]:rounded-r-none [&>*:last-child]:rounded-l-none [&>*:not(:first-child):not(:last-child)]:rounded-none",
+        styles.group,
         className,
       )}
     >
