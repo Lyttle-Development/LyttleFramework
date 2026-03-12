@@ -1,0 +1,29 @@
+.collapsible {
+  min-width: 0;
+}
+
+.trigger {
+  min-width: 0;
+}
+
+.content {
+  min-width: 0;
+  height: var(--collapsible-panel-height);
+  opacity: 1;
+  overflow: hidden;
+  transition: height var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
+
+  &[data-starting-style],
+  &[data-ending-style],
+  &[data-closed] {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content {
+    transition: none;
+  }
+}
+
