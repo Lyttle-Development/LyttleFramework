@@ -1,0 +1,96 @@
+@use "../../styles/mixins" as mixins;
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--input);
+  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+
+  @include mixins.control-focus-ring;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem -0.75rem;
+  }
+
+  &[data-size="default"] {
+    width: 2rem;
+    height: 1.15rem;
+    padding: 1px;
+    --switch-thumb-size: 1rem;
+    --switch-thumb-translate: 0.875rem;
+  }
+
+  &[data-size="sm"] {
+    width: 1.5rem;
+    height: 0.875rem;
+    padding: 1px;
+    --switch-thumb-size: 0.75rem;
+    --switch-thumb-translate: 0.625rem;
+  }
+
+  &[data-checked],
+  &[aria-checked="true"] {
+    background: var(--primary);
+  }
+
+  &[data-unchecked],
+  &[aria-checked="false"] {
+    background: var(--input);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--destructive);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.thumb {
+  pointer-events: none;
+  display: block;
+  width: var(--switch-thumb-size);
+  height: var(--switch-thumb-size);
+  border-radius: 999px;
+  background: var(--background);
+  transition: transform 120ms ease, background-color 120ms ease;
+  transform: translateX(0);
+}
+
+.switch[data-checked] .thumb,
+.switch[aria-checked="true"] .thumb {
+  transform: translateX(var(--switch-thumb-translate));
+}
+
+.dark .switch {
+  &[data-unchecked],
+  &[aria-checked="false"] {
+    background: color-mix(in oklab, var(--input) 80%, transparent);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: color-mix(in oklab, var(--destructive) 50%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+  }
+}
+
+.dark .switch[data-checked] .thumb,
+.dark .switch[aria-checked="true"] .thumb {
+  background: var(--primary-foreground);
+}
+
+.dark .switch[data-unchecked] .thumb,
+.dark .switch[aria-checked="false"] .thumb {
+  background: var(--foreground);
+}
+

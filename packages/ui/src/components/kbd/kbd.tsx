@@ -1,5 +1,6 @@
 import * as React from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
+import styles from "./kbd.module.scss";
 
 export function Kbd({
   children,
@@ -11,7 +12,7 @@ export function Kbd({
   return (
     <kbd
       className={cn(
-        "inline-flex items-center rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs font-medium text-muted-foreground shadow-sm",
+        styles.kbd,
         className,
       )}
     >

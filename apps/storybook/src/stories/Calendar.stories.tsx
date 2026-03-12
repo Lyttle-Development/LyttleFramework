@@ -1,4 +1,4 @@
-impoPlease alsigrt type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Calendar } from "@lyttle/ui";
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
@@ -34,12 +34,11 @@ export const Default: Story = {
 
 export const RangeSelection: Story = {
   render: () => {
-    const [range, setRange] = React.useState<{ from: Date; to?: Date } | undefined>();
     const [range, setRange] = React.useState<DateRange | undefined>();
+    return (
       <Calendar
         mode="range"
         selected={range}
-        onSelect={setRange as any}
         onSelect={setRange}
         className="rounded-md border"
       />

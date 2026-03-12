@@ -1,16 +1,17 @@
 import * as React from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
+import styles from "./spinner.module.scss";
 
 const spinnerVariants = cva(
-  "animate-spin rounded-full border-2 border-current border-t-transparent text-primary",
+  styles.spinner,
   {
     variants: {
       size: {
-        sm: "h-3 w-3",
-        default: "h-4 w-4",
-        lg: "h-6 w-6",
-        xl: "h-8 w-8",
+        sm: styles.sizeSm,
+        default: styles.sizeDefault,
+        lg: styles.sizeLg,
+        xl: styles.sizeXl,
       },
     },
     defaultVariants: {

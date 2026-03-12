@@ -1,5 +1,6 @@
 import * as React from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
+import styles from "./empty.module.scss";
 
 export interface EmptyProps {
   title?: string;
@@ -21,7 +22,7 @@ function DefaultIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className="text-muted-foreground/50"
+      className={styles.defaultIcon}
     >
       <circle cx="12" cy="12" r="10" />
       <line x1="8" y1="12" x2="16" y2="12" />
@@ -39,22 +40,22 @@ export function Empty({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-border bg-muted/20 px-6 py-12 text-center",
+        styles.empty,
         className,
       )}
       role="status"
       aria-live="polite"
     >
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+      <div className={styles.iconWrapper}>
         {icon ?? <DefaultIcon />}
       </div>
-      <div className="space-y-1 max-w-sm">
-        <p className="text-sm font-semibold text-foreground">{title}</p>
+      <div className={styles.content}>
+        <p className={styles.title}>{title}</p>
         {description && (
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <p className={styles.description}>{description}</p>
         )}
       </div>
-      {children && <div className="mt-2">{children}</div>}
+      {children && <div className={styles.actions}>{children}</div>}
     </div>
   );
 }
