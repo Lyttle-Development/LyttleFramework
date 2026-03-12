@@ -1,0 +1,22 @@
+{
+  "name": "lyttle-framework",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/docs",
+    "dev:docs": "npm run dev --workspace=apps/docs",
+    "dev:storybook": "npm run dev --workspace=apps/storybook",
+    "build": "npm run build --workspace=packages/ui && npm run build --workspace=apps/docs",
+    "build:docs": "npm run build --workspace=apps/docs",
+    "build:storybook": "npm run build --workspace=apps/storybook",
+    "lint": "eslint"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

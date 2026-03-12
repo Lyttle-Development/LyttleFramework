@@ -1,0 +1,101 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+# Lyttle Framework — Component Library
+
+A complete design system built on [shadcn/ui](https://ui.shadcn.com), styled with the **LyttleDevelopment** brand palette.
+Accessible, polished, and production-ready.
+
+---
+
+## 🎨 Design Tokens
+
+The framework uses a coherent set of CSS custom properties defined in `globals.css`.
+All colours are specified in **OKLCH** for perceptually uniform palettes across light and dark modes.
+
+| Token | Description |
+|---|---|
+| `--primary` | Brand purple — main interactive colour |
+| `--brand-gradient-primary` | Purple→dark-purple gradient for hero CTAs |
+| `--brand-gradient-accent` | Coral→rose gradient for secondary CTAs |
+| `--destructive` | Error / danger red |
+| `--muted` | Subtle backgrounds and secondary text |
+| `--radius` | Base border-radius (0.5 rem) |
+
+---
+
+## 📦 Components
+
+Every component in `packages/ui` is exported from `@lyttle/ui`.
+Browse the sidebar to explore each component individually.
+
+| Category | Components |
+|---|---|
+| **Actions** | Button, ButtonGroup, Toggle, ToggleGroup |
+| **Forms** | Input, Textarea, Select, NativeSelect, Checkbox, RadioGroup, Switch, Slider, Calendar, Combobox |
+| **Feedback** | Alert, AlertDialog, Badge, Progress, Skeleton, Spinner, Sonner (toast) |
+| **Overlays** | Dialog, Sheet, Drawer, Popover, HoverCard, Tooltip, ContextMenu, DropdownMenu |
+| **Navigation** | Tabs, Breadcrumb, Pagination, NavigationMenu, Menubar |
+| **Data Display** | Table, Card, Avatar, Chart, Carousel, Accordion, Collapsible |
+| **Layout** | Separator, Resizable, ScrollArea, AspectRatio, Sidebar |
+| **Typography** | Label, Kbd, Badge, Empty |
+
+---
+
+## 🚀 Quick Start
+
+Install the package from the monorepo:
+
+```bash
+# From any app in the monorepo
+npm install @lyttle/ui
+```
+
+Import and use components:
+
+```tsx
+import { Button, Card, CardContent } from "@lyttle/ui";
+import "@lyttle/ui/styles"; // import globals.css once in your app root
+
+export default function Page() {
+  return (
+    <Card>
+      <CardContent>
+        <Button>Hello, Lyttle!</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+---
+
+## 🌗 Dark Mode
+
+The framework ships with full dark-mode support via the `.dark` class on `<html>`.
+Toggle the **Theme** control in the Storybook toolbar (top right) to preview both modes.
+
+---
+
+## ♿ Accessibility
+
+All interactive components are built on **Radix UI primitives** and meet WCAG 2.1 AA:
+
+- Full keyboard navigation
+- Screen-reader ARIA labels
+- Focus-visible ring on every interactive element
+- Colour contrast ratios verified in both themes
+
+---
+
+## 📁 Monorepo Structure
+
+```
+lyttle-framework/
+├── apps/
+│   ├── docs/          # Next.js showcase app  (port 3000)
+│   └── storybook/     # This Storybook         (port 6006)
+├── packages/
+│   └── ui/            # Shared component library (@lyttle/ui)
+└── tsconfig.base.json
