@@ -1,4 +1,5 @@
 import { ShowcaseSection, ShowcaseBlock } from "./showcase-section";
+import { Grid, Inline, Stack, Surface, Text } from "@lyttle/ui/components/layout/layout";
 
 const swatches = [
   {
@@ -88,84 +89,79 @@ export function SectionColors() {
         title="Semantic Tokens"
         description="Core palette — these drive every component in the system."
       >
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        <Grid columns={2} smColumns={3} mdColumns={4} gap="sm">
           {swatches.map((s) => (
-            <div key={s.var} className="space-y-2">
-              <div
-                className="h-16 w-full rounded-lg border border-border shadow-sm"
-                style={{ background: `var(${s.var})` }}
+            <Stack key={s.var} gap="xs" align="start">
+              <Surface
+                padding="none"
+                radius="lg"
+                style={{ background: `var(${s.var})`, minHeight: "4rem", width: "100%" }}
+                aria-label={s.var}
                 title={s.var}
               />
-              <div>
-                <p className="text-xs font-semibold text-foreground leading-tight">
-                  {s.label}
-                </p>
-                <p className="text-xs text-muted-foreground font-mono">{s.var}</p>
-                {s.desc && (
-                  <p className="text-xs text-muted-foreground">{s.desc}</p>
-                )}
-              </div>
-            </div>
+              <Stack gap="xs" align="start">
+                <Text as="p" size="xs" weight="semibold">{s.label}</Text>
+                <Text as="p" size="xs" tone="muted" mono>{s.var}</Text>
+                {s.desc ? <Text as="p" size="xs" tone="muted">{s.desc}</Text> : null}
+              </Stack>
+            </Stack>
           ))}
-        </div>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock
         title="Brand Foundation Tokens"
         description="Role-based brand tokens that can stay stable even if the underlying hue shifts in future themes."
       >
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <Grid columns={1} smColumns={3} gap="sm">
           {brandSwatches.map((s) => (
-            <div key={s.var} className="space-y-2">
-              <div
-                className="h-20 w-full rounded-lg border border-border shadow-sm"
-                style={{ background: `var(${s.var})` }}
-              />
-              <div>
-                <p className="text-xs font-semibold text-foreground">{s.label}</p>
-                <p className="text-xs text-muted-foreground font-mono">{s.var}</p>
-                <p className="text-xs text-muted-foreground">{s.desc}</p>
-              </div>
-            </div>
+            <Stack key={s.var} gap="xs" align="start">
+              <Surface padding="none" radius="lg" style={{ background: `var(${s.var})`, minHeight: "5rem", width: "100%" }} />
+              <Stack gap="xs" align="start">
+                <Text as="p" size="xs" weight="semibold">{s.label}</Text>
+                <Text as="p" size="xs" tone="muted" mono>{s.var}</Text>
+                <Text as="p" size="xs" tone="muted">{s.desc}</Text>
+              </Stack>
+            </Stack>
           ))}
-        </div>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock
         title="Gradients"
         description="Brand-defined gradient utilities: .bg-brand-gradient and .bg-brand-gradient-accent"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="h-24 rounded-lg bg-brand-gradient flex items-center justify-center text-white font-semibold text-sm shadow-sm">
-            .bg-brand-gradient
-          </div>
-          <div className="h-24 rounded-lg bg-brand-gradient-accent flex items-center justify-center text-white font-semibold text-sm shadow-sm">
-            .bg-brand-gradient-accent
-          </div>
-        </div>
+        <Grid columns={1} smColumns={2} gap="md">
+          <Surface tone="brand" radius="lg" shadow="sm" style={{ minHeight: "6rem", alignItems: "center", justifyContent: "center" }}>
+            <Text as="span" size="sm" weight="semibold" tone="inverse">Primary brand gradient</Text>
+          </Surface>
+          <Surface radius="lg" shadow="sm" style={{ minHeight: "6rem", alignItems: "center", justifyContent: "center", background: "var(--brand-gradient-accent)", color: "white", borderColor: "transparent" }}>
+            <Text as="span" size="sm" weight="semibold" tone="inverse">Accent brand gradient</Text>
+          </Surface>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock
         title="Chart Palette"
         description="Five harmonious chart colours derived from the brand system."
       >
-        <div className="flex gap-3 flex-wrap">
+        <Inline gap="sm">
           {chartSwatches.map((s) => (
-            <div key={s.var} className="flex flex-col items-center gap-1">
+            <Stack key={s.var} gap="xs" align="center">
               <div
-                className="h-12 w-12 rounded-full shadow-sm"
                 style={{
+                  width: "3rem",
+                  height: "3rem",
+                  borderRadius: "999px",
                   background: `var(${s.var})`,
                   border: `1px solid color-mix(in oklab, var(${s.var}) 48%, var(--background))`,
                   boxShadow: `inset 0 0 0 3px color-mix(in oklab, var(${s.var}) 14%, white), 0 8px 18px rgb(15 23 42 / 0.08)`,
                 }}
               />
-              <span className="text-xs text-muted-foreground font-mono">
-                {s.label}
-              </span>
-            </div>
+              <Text as="span" size="xs" tone="muted" mono>{s.label}</Text>
+            </Stack>
           ))}
-        </div>
+        </Inline>
       </ShowcaseBlock>
     </ShowcaseSection>
   );

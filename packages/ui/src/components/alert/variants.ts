@@ -7,6 +7,10 @@ const alertVariants = cva(styles.alert, {
     variant: {
       default: styles.variantDefault,
       destructive: styles.variantDestructive,
+      info: styles.variantInfo,
+      success: styles.variantSuccess,
+      warning: styles.variantWarning,
+      error: styles.variantError,
     },
   },
   defaultVariants: {

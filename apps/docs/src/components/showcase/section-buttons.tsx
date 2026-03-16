@@ -6,6 +6,7 @@ import { ButtonGroup } from "@lyttle/ui";
 import { Toggle } from "@lyttle/ui";
 import { ToggleGroup, ToggleGroupItem } from "@lyttle/ui";
 import { Spinner } from "@lyttle/ui";
+import { Inline, Stack, Text } from "@lyttle/ui/components/layout/layout";
 import * as React from "react";
 
 function BoldIcon() {
@@ -49,18 +50,6 @@ export function SectionButtons() {
   const [singleSelection, setSingleSelection] = React.useState<string[]>(["italic"]);
   const [multiSelection, setMultiSelection] = React.useState<string[]>(["bold", "italic"]);
 
-  const gradientButtonClassName = "border-transparent text-white shadow-md transition-opacity hover:opacity-95";
-  const primaryGradientStyle = {
-    backgroundImage: "var(--brand-gradient-primary)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 100%",
-  } as const;
-  const accentGradientStyle = {
-    backgroundImage: "var(--brand-gradient-accent)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 100%",
-  } as const;
-
   const handleLoad = () => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2000);
@@ -73,80 +62,63 @@ export function SectionButtons() {
       description="All button variants, sizes, states, and composite patterns."
     >
       <ShowcaseBlock title="Variants" description="Primary, secondary, outline, ghost, link, destructive">
-        <div className="flex flex-wrap gap-3 items-center">
+        <Inline gap="sm">
           <Button variant="default">Default</Button>
           <Button variant="secondary">Secondary</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
           <Button variant="link">Link</Button>
           <Button variant="destructive">Destructive</Button>
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Sizes">
-        <div className="flex flex-wrap gap-3 items-center">
+        <Inline gap="sm">
           <Button size="sm">Small</Button>
           <Button size="default">Default</Button>
           <Button size="lg">Large</Button>
           <Button size="icon" aria-label="Add item"><PlusIcon /></Button>
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="States">
-        <div className="flex flex-wrap gap-3 items-center">
+        <Inline gap="sm">
           <Button>Active</Button>
           <Button disabled>Disabled</Button>
-          <Button disabled aria-busy="true" className="gap-2">
+          <Button disabled aria-busy="true">
             <Spinner size="sm" />
             Loading…
           </Button>
           <Button
-            className="gap-2"
             onClick={handleLoad}
             disabled={loading}
             aria-busy={loading}
           >
             {loading ? <><Spinner size="sm" />Processing…</> : "Click to load"}
           </Button>
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="With Icons">
-        <div className="flex flex-wrap gap-3 items-center">
-          <Button className="gap-2"><PlusIcon />Create New</Button>
-          <Button variant="outline" className="gap-2"><PlusIcon />Add Item</Button>
-          <Button variant="destructive" className="gap-2"><TrashIcon />Delete</Button>
-          <Button variant="ghost" className="gap-2"><TrashIcon />Remove</Button>
+        <Inline gap="sm">
+          <Button><PlusIcon />Create New</Button>
+          <Button variant="outline"><PlusIcon />Add Item</Button>
+          <Button variant="danger"><TrashIcon />Delete</Button>
+          <Button variant="ghost"><TrashIcon />Remove</Button>
           <Button size="icon" variant="outline" aria-label="Delete item"><TrashIcon /></Button>
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Brand Gradient Buttons" description="Custom brand-styled CTAs">
-        <div className="flex flex-wrap gap-3 items-center">
-          <Button
-            className={gradientButtonClassName}
-            style={primaryGradientStyle}
-          >
-            Primary CTA
-          </Button>
-          <Button
-            className={gradientButtonClassName}
-            style={accentGradientStyle}
-          >
-            Accent CTA
-          </Button>
-          <Button
-            size="lg"
-            className={`${gradientButtonClassName} px-8 shadow-lg`}
-            style={primaryGradientStyle}
-          >
-            Get Started →
-          </Button>
-        </div>
+        <Inline gap="sm">
+          <Button variant="brand">Primary CTA</Button>
+          <Button variant="accent">Accent CTA</Button>
+          <Button size="lg" variant="brand">Get Started →</Button>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Button Group" description="Composite button groups for related actions">
-        <div className="flex flex-col gap-4">
+        <Stack gap="md" align="start">
           <ButtonGroup>
             <Button variant="outline">Left</Button>
             <Button variant="outline">Middle</Button>
@@ -160,37 +132,37 @@ export function SectionButtons() {
               </svg>
             </Button>
           </ButtonGroup>
-        </div>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Toggle">
-        <div className="flex flex-wrap gap-4 items-center">
+        <Inline gap="md">
           <Toggle aria-label="Toggle bold"><BoldIcon /></Toggle>
           <Toggle aria-label="Toggle italic" defaultPressed><ItalicIcon /></Toggle>
           <Toggle variant="outline" aria-label="Toggle underline"><UnderlineIcon /></Toggle>
           <Toggle disabled aria-label="Disabled toggle"><BoldIcon /></Toggle>
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Toggle Group" description="Single and multiple selection">
-        <div className="flex flex-col gap-4">
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Single select</p>
+        <Stack gap="md" align="start">
+          <Stack gap="xs" align="start">
+            <Text as="p" size="xs" tone="muted">Single select</Text>
             <ToggleGroup value={singleSelection} onValueChange={setSingleSelection}>
               <ToggleGroupItem value="bold" aria-label="Bold"><BoldIcon /></ToggleGroupItem>
               <ToggleGroupItem value="italic" aria-label="Italic"><ItalicIcon /></ToggleGroupItem>
               <ToggleGroupItem value="underline" aria-label="Underline"><UnderlineIcon /></ToggleGroupItem>
             </ToggleGroup>
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Multiple select</p>
+          </Stack>
+          <Stack gap="xs" align="start">
+            <Text as="p" size="xs" tone="muted">Multiple select</Text>
             <ToggleGroup multiple value={multiSelection} onValueChange={setMultiSelection}>
               <ToggleGroupItem value="bold" aria-label="Bold"><BoldIcon /></ToggleGroupItem>
               <ToggleGroupItem value="italic" aria-label="Italic"><ItalicIcon /></ToggleGroupItem>
               <ToggleGroupItem value="underline" aria-label="Underline"><UnderlineIcon /></ToggleGroupItem>
             </ToggleGroup>
-          </div>
-        </div>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
     </ShowcaseSection>
   );

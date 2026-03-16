@@ -2,6 +2,7 @@ import { ShowcaseSection, ShowcaseBlock } from "./showcase-section";
 import { Badge } from "@lyttle/ui";
 import { Separator } from "@lyttle/ui";
 import { Kbd } from "@lyttle/ui";
+import { Grid, Heading, Inline, Stack, Surface, Text } from "@lyttle/ui/components/layout/layout";
 
 export function SectionTypography() {
   return (
@@ -11,139 +12,123 @@ export function SectionTypography() {
       description="Type scale built on Inter — optimised for readability with brand-harmonious heading styles."
     >
       <ShowcaseBlock title="Heading Scale" description="h1–h6 with brand styling">
-        <div className="space-y-4">
-          <div>
-            <h1 className="text-5xl font-bold text-foreground">Heading 1</h1>
-            <code className="text-xs text-muted-foreground">text-5xl font-bold</code>
-          </div>
-          <div>
-            <h2 className="text-4xl font-bold text-foreground">Heading 2</h2>
-            <code className="text-xs text-muted-foreground">text-4xl font-bold</code>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold text-foreground">Heading 3</h3>
-            <code className="text-xs text-muted-foreground">text-3xl font-bold</code>
-          </div>
-          <div>
-            <h4 className="text-2xl font-semibold text-foreground">Heading 4</h4>
-            <code className="text-xs text-muted-foreground">text-2xl font-semibold</code>
-          </div>
-          <div>
-            <h5 className="text-xl font-semibold text-foreground">Heading 5</h5>
-            <code className="text-xs text-muted-foreground">text-xl font-semibold</code>
-          </div>
-          <div>
-            <h6 className="text-lg font-semibold text-foreground">Heading 6</h6>
-            <code className="text-xs text-muted-foreground">text-lg font-semibold</code>
-          </div>
-        </div>
+        <Stack gap="md" align="start">
+          <Stack gap="xs" align="start"><Heading as="h1" size="5xl">Heading 1</Heading><Text as="code" size="xs" tone="muted" mono>text-5xl font-bold</Text></Stack>
+          <Stack gap="xs" align="start"><Heading as="h2" size="4xl">Heading 2</Heading><Text as="code" size="xs" tone="muted" mono>text-4xl font-bold</Text></Stack>
+          <Stack gap="xs" align="start"><Heading as="h3" size="3xl">Heading 3</Heading><Text as="code" size="xs" tone="muted" mono>text-3xl font-bold</Text></Stack>
+          <Stack gap="xs" align="start"><Heading as="h4" size="2xl" weight="semibold">Heading 4</Heading><Text as="code" size="xs" tone="muted" mono>text-2xl font-semibold</Text></Stack>
+          <Stack gap="xs" align="start"><Heading as="h5" size="xl" weight="semibold">Heading 5</Heading><Text as="code" size="xs" tone="muted" mono>text-xl font-semibold</Text></Stack>
+          <Stack gap="xs" align="start"><Heading as="h6" size="lg" weight="semibold">Heading 6</Heading><Text as="code" size="xs" tone="muted" mono>text-lg font-semibold</Text></Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Token-colored Headings">
-        <div className="space-y-3">
-          <h2 className="text-3xl font-bold text-brand-base">
+        <Stack gap="sm" align="start">
+          <Heading as="h2" size="3xl" tone="brand-base">
             Base token heading — primary emphasis
-          </h2>
-          <h2 className="text-3xl font-bold text-brand-accent">
+          </Heading>
+          <Heading as="h2" size="3xl" tone="brand-accent">
             Accent token heading — expressive highlight
-          </h2>
-          <h2 className="text-3xl font-bold">
+          </Heading>
+          <Heading as="h2" size="3xl">
             Mixed{" "}
-            <span className="text-brand-base">base</span>{" "}
+            <Text as="span" size="3xl" weight="bold" tone="brand-base">base</Text>{" "}
             and{" "}
-            <span className="text-brand-accent">accent</span>{" "}
+            <Text as="span" size="3xl" weight="bold" tone="brand-accent">accent</Text>{" "}
             inline
-          </h2>
-        </div>
+          </Heading>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Body Text Scale">
-        <div className="space-y-4">
-          <p className="text-xl text-foreground leading-relaxed">
+        <Stack gap="md" align="start">
+          <Text as="p" size="xl">
             Large body — ideal for lead paragraphs and introductory sections.
-          </p>
-          <p className="text-base text-foreground leading-relaxed">
+          </Text>
+          <Text as="p" size="md">
             Regular body — the standard paragraph size. Used for most content
             throughout an interface. LyttleDevelopment combines clarity and
             personality in every pixel.
-          </p>
-          <p className="text-sm text-foreground">
+          </Text>
+          <Text as="p" size="sm">
             Small body — UI labels, captions, helper text, and tight layouts.
-          </p>
-          <p className="text-xs text-muted-foreground">
+          </Text>
+          <Text as="p" size="xs" tone="muted">
             Extra small — metadata, timestamps, legal text.
-          </p>
-        </div>
+          </Text>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Text Styles">
-        <div className="space-y-3">
-          <p className="text-muted-foreground">
+        <Stack gap="sm" align="start">
+          <Text as="p" tone="muted">
             Muted foreground — secondary information
-          </p>
-          <p>
+          </Text>
+          <Text as="p">
             <strong>Bold text</strong> and <em>italic text</em> and{" "}
             <u>underlined text</u>
-          </p>
-          <p>
-            <code className="bg-muted text-foreground px-1.5 py-0.5 rounded text-sm font-mono">
+          </Text>
+          <Inline gap="xs" align="center">
+            <Surface as="code" tone="muted" padding="sm" radius="md" shadow="none">
               inline code
-            </code>{" "}
-            and regular text side by side
-          </p>
-          <p>
+            </Surface>
+            <Text as="span">and regular text side by side</Text>
+          </Inline>
+          <Text as="p">
             <a href="#typography">Hyperlink style</a> — uses brand primary
             colour with underline offset
-          </p>
-          <p className="line-through text-muted-foreground">Strikethrough text</p>
-          <blockquote className="border-l-4 pl-4 italic text-muted-foreground" style={{ borderColor: "var(--brand-base)" }}>
+          </Text>
+          <Text as="p" tone="muted"><s>Strikethrough text</s></Text>
+          <Surface as="blockquote" tone="muted" padding="md" radius="md" shadow="none" style={{ borderLeft: "4px solid var(--brand-base)" }}>
+            <Text as="p" tone="muted"><em>
             &ldquo;Great design is about solving problems with clarity, empathy,
             and intention.&rdquo;
-          </blockquote>
-        </div>
+            </em></Text>
+          </Surface>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Inline Elements">
-        <div className="flex flex-wrap gap-3 items-center">
+        <Inline gap="sm">
           <Badge>Default Badge</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="outline">Outline</Badge>
           <Badge variant="destructive">Destructive</Badge>
-          <Separator orientation="vertical" className="h-6" />
+          <Separator orientation="vertical" />
           <Kbd>Ctrl</Kbd>
           <Kbd>K</Kbd>
-          <Separator orientation="vertical" className="h-6" />
-          <code className="bg-muted px-2 py-0.5 rounded text-sm font-mono text-foreground">
-            code snippet
-          </code>
-        </div>
+          <Separator orientation="vertical" />
+          <Surface as="code" tone="muted" padding="sm" radius="md" shadow="none">
+            <Text as="span" size="sm" mono>code snippet</Text>
+          </Surface>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="List Styles">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <p className="text-sm font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+        <Grid columns={1} mdColumns={2} gap="xl">
+          <Stack gap="sm" align="start">
+            <Text as="p" size="sm" weight="semibold" tone="muted" transform="uppercase">
               Unordered
-            </p>
-            <ul className="space-y-1.5 list-disc pl-5 text-foreground">
+            </Text>
+            <Stack as="ul" gap="xs" style={{ paddingLeft: "1.25rem", margin: 0 }}>
               <li>Design tokens — semantic & composable</li>
               <li>56 reusable UI components</li>
               <li>WCAG AA accessible</li>
               <li>Dark & light mode</li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+            </Stack>
+          </Stack>
+          <Stack gap="sm" align="start">
+            <Text as="p" size="sm" weight="semibold" tone="muted" transform="uppercase">
               Ordered
-            </p>
-            <ol className="space-y-1.5 list-decimal pl-5 text-foreground">
+            </Text>
+            <Stack as="ol" gap="xs" style={{ paddingLeft: "1.25rem", margin: 0 }}>
               <li>Define brand tokens</li>
               <li>Install component library</li>
               <li>Apply theme</li>
               <li>Ship to production</li>
-            </ol>
-          </div>
-        </div>
+            </Stack>
+          </Stack>
+        </Grid>
       </ShowcaseBlock>
     </ShowcaseSection>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Container, Text } from "@lyttle/ui";
 import { ShowcaseHero } from "@/components/showcase/showcase-hero";
 import { ShowcaseNav } from "@/components/showcase/showcase-nav";
 import { SectionTypography } from "@/components/showcase/section-typography";
@@ -17,9 +18,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div>
       <ShowcaseNav />
-      <main id="main-content" className="container mx-auto max-w-7xl px-4 py-10 md:py-12">
+      <Container as="main" id="main-content" size="7xl" padding="md" style={{ paddingBlock: "2.5rem" }}>
         <ShowcaseHero />
         <SectionColors />
         <SectionTypography />
@@ -30,12 +31,14 @@ export default function Home() {
         <SectionNavigation />
         <SectionOverlays />
         <SectionLayout />
-      </main>
-      <footer className="mt-20 border-t border-border py-12 text-center text-sm text-muted-foreground md:mt-24">
-        <p>
-          <strong className="text-foreground">Lyttle Framework</strong> — Built
-          with the LyttleDevelopment brand palette · WCAG AA accessible
-        </p>
+      </Container>
+      <footer style={{ marginTop: "5rem", borderTop: "1px solid var(--border)", paddingBlock: "3rem" }}>
+        <Container size="7xl" padding="md">
+          <Text as="p" size="sm" tone="muted" align="center">
+            <strong style={{ color: "var(--foreground)" }}>Lyttle Framework</strong> — Built with the
+            {" "}LyttleDevelopment brand palette · WCAG AA accessible
+          </Text>
+        </Container>
       </footer>
     </div>
   );

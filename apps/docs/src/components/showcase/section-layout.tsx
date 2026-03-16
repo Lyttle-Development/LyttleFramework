@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
@@ -46,14 +45,29 @@ import {
   Sparkles,
   UserCircle2,
 } from "lucide-react";
+import { Grid, Inline, Stack, Surface, Text } from "@lyttle/ui/components/layout/layout";
 
-function LayoutBox({ label, className = "" }: { label: string; className?: string }) {
+function LayoutBox({
+  label,
+  height = "3rem",
+  tone = "muted",
+  span,
+}: {
+  label: string;
+  height?: string;
+  tone?: "muted" | "secondary" | "accent";
+  span?: 1 | 2 | 3;
+}) {
   return (
-    <div
-      className={`rounded-md border border-border flex items-center justify-center text-xs text-muted-foreground font-mono p-2 ${className}`}
+    <Surface
+      tone={tone}
+      padding="sm"
+      radius="md"
+      shadow="none"
+      style={{ minHeight: height, alignItems: "center", justifyContent: "center", gridColumn: span ? `span ${span} / span ${span}` : undefined }}
     >
-      {label}
-    </div>
+      <Text as="span" size="xs" tone="muted" mono>{label}</Text>
+    </Surface>
   );
 }
 
@@ -87,135 +101,135 @@ export function SectionLayout() {
       description="Grid systems, resizable panels, separators, sidebar, and structural patterns."
     >
       <ShowcaseBlock title="Separator" description="Horizontal and vertical dividers">
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <p className="text-xs text-muted-foreground">Horizontal</p>
+        <Stack gap="md" align="start">
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">Horizontal</Text>
             <Separator />
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs text-muted-foreground">Vertical</p>
-            <div className="flex items-center gap-4 h-8">
-              <span className="text-sm text-foreground">Blog</span>
+          </Stack>
+          <Stack gap="xs" align="start">
+            <Text as="p" size="xs" tone="muted">Vertical</Text>
+            <Inline gap="md" style={{ minHeight: "2rem" }}>
+              <Text as="span" size="sm">Blog</Text>
               <Separator orientation="vertical" />
-              <span className="text-sm text-foreground">Docs</span>
+              <Text as="span" size="sm">Docs</Text>
               <Separator orientation="vertical" />
-              <span className="text-sm text-foreground">Source</span>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs text-muted-foreground">With label</p>
-            <div className="flex items-center gap-3">
-              <Separator className="flex-1" />
-              <span className="text-xs text-muted-foreground px-2">OR</span>
-              <Separator className="flex-1" />
-            </div>
-          </div>
-        </div>
+              <Text as="span" size="sm">Source</Text>
+            </Inline>
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">With label</Text>
+            <Inline gap="sm" style={{ width: "100%" }}>
+              <Separator style={{ flex: 1 }} />
+              <Text as="span" size="xs" tone="muted">OR</Text>
+              <Separator style={{ flex: 1 }} />
+            </Inline>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Grid Layouts" description="Common responsive grid patterns">
-        <div className="space-y-4">
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">2-column</p>
-            <div className="grid grid-cols-2 gap-2">
-              <LayoutBox label="col 1" className="h-12 bg-muted/30" />
-              <LayoutBox label="col 2" className="h-12 bg-muted/30" />
-            </div>
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">3-column</p>
-            <div className="grid grid-cols-3 gap-2">
-              <LayoutBox label="col 1" className="h-12 bg-muted/30" />
-              <LayoutBox label="col 2" className="h-12 bg-muted/30" />
-              <LayoutBox label="col 3" className="h-12 bg-muted/30" />
-            </div>
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Sidebar + main layout</p>
-            <div className="grid grid-cols-4 gap-2">
-              <LayoutBox label="sidebar" className="h-24 bg-secondary/50 col-span-1" />
-              <LayoutBox label="main content" className="h-24 bg-muted/30 col-span-3" />
-            </div>
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Holy grail layout</p>
-            <div className="space-y-2">
-              <LayoutBox label="header" className="h-10 bg-primary/10" />
-              <div className="grid grid-cols-4 gap-2">
-                <LayoutBox label="nav" className="h-20 bg-secondary/50" />
-                <LayoutBox label="main" className="h-20 bg-muted/30 col-span-2" />
-                <LayoutBox label="aside" className="h-20 bg-secondary/50" />
-              </div>
-              <LayoutBox label="footer" className="h-10 bg-primary/10" />
-            </div>
-          </div>
-        </div>
+        <Stack gap="md" align="start">
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">2-column</Text>
+            <Grid columns={2} gap="xs" style={{ width: "100%" }}>
+              <LayoutBox label="col 1" height="3rem" />
+              <LayoutBox label="col 2" height="3rem" />
+            </Grid>
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">3-column</Text>
+            <Grid columns={3} gap="xs" style={{ width: "100%" }}>
+              <LayoutBox label="col 1" height="3rem" />
+              <LayoutBox label="col 2" height="3rem" />
+              <LayoutBox label="col 3" height="3rem" />
+            </Grid>
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">Sidebar + main layout</Text>
+            <Grid columns={4} gap="xs" style={{ width: "100%" }}>
+              <LayoutBox label="sidebar" height="6rem" tone="secondary" />
+              <LayoutBox label="main content" height="6rem" span={3} />
+            </Grid>
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">Holy grail layout</Text>
+            <Stack gap="xs" align="start" style={{ width: "100%" }}>
+              <LayoutBox label="header" height="2.5rem" tone="accent" />
+              <Grid columns={4} gap="xs" style={{ width: "100%" }}>
+                <LayoutBox label="nav" height="5rem" tone="secondary" />
+                <LayoutBox label="main" height="5rem" span={2} />
+                <LayoutBox label="aside" height="5rem" tone="secondary" />
+              </Grid>
+              <LayoutBox label="footer" height="2.5rem" tone="accent" />
+            </Stack>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Resizable Panels" description="Drag to resize split-pane layouts">
-        <div className="space-y-4">
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Horizontal split</p>
+        <Stack gap="md" align="start">
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">Horizontal split</Text>
             <ResizablePanelGroup
               orientation="horizontal"
-              className="h-40 rounded-lg border border-border overflow-hidden"
+              style={{ height: "10rem", borderRadius: "var(--radius-lg)", border: "1px solid var(--border)", overflow: "hidden" }}
             >
               <ResizablePanel defaultSize={30}>
-                <div className="flex h-full items-center justify-center bg-muted/30 text-xs text-muted-foreground font-mono">
-                  Panel 1
-                </div>
+                <Surface tone="muted" padding="md" radius="lg" shadow="none" style={{ height: "100%", alignItems: "center", justifyContent: "center", border: 0 }}>
+                  <Text as="span" size="xs" tone="muted" mono>Panel 1</Text>
+                </Surface>
               </ResizablePanel>
               <ResizableHandle withHandle />
               <ResizablePanel defaultSize={70}>
-                <div className="flex h-full items-center justify-center bg-secondary/30 text-xs text-muted-foreground font-mono">
-                  Panel 2
-                </div>
+                <Surface tone="secondary" padding="md" radius="lg" shadow="none" style={{ height: "100%", alignItems: "center", justifyContent: "center", border: 0 }}>
+                  <Text as="span" size="xs" tone="muted" mono>Panel 2</Text>
+                </Surface>
               </ResizablePanel>
             </ResizablePanelGroup>
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Three-pane vertical</p>
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="p" size="xs" tone="muted">Three-pane vertical</Text>
             <ResizablePanelGroup
               orientation="vertical"
-              className="h-48 rounded-lg border border-border overflow-hidden"
+              style={{ height: "12rem", borderRadius: "var(--radius-lg)", border: "1px solid var(--border)", overflow: "hidden" }}
             >
               <ResizablePanel defaultSize={40}>
-                <div className="flex h-full items-center justify-center bg-muted/30 text-xs text-muted-foreground font-mono">
-                  Top
-                </div>
+                <Surface tone="muted" padding="md" radius="lg" shadow="none" style={{ height: "100%", alignItems: "center", justifyContent: "center", border: 0 }}>
+                  <Text as="span" size="xs" tone="muted" mono>Top</Text>
+                </Surface>
               </ResizablePanel>
               <ResizableHandle withHandle />
               <ResizablePanel defaultSize={60}>
                 <ResizablePanelGroup orientation="horizontal">
                   <ResizablePanel defaultSize={50}>
-                    <div className="flex h-full items-center justify-center bg-secondary/30 text-xs text-muted-foreground font-mono">
-                      Bottom L
-                    </div>
+                    <Surface tone="secondary" padding="md" radius="lg" shadow="none" style={{ height: "100%", alignItems: "center", justifyContent: "center", border: 0 }}>
+                      <Text as="span" size="xs" tone="muted" mono>Bottom L</Text>
+                    </Surface>
                   </ResizablePanel>
                   <ResizableHandle withHandle />
                   <ResizablePanel defaultSize={50}>
-                    <div className="flex h-full items-center justify-center bg-accent/50 text-xs text-muted-foreground font-mono">
-                      Bottom R
-                    </div>
+                    <Surface tone="accent" padding="md" radius="lg" shadow="none" style={{ height: "100%", alignItems: "center", justifyContent: "center", border: 0 }}>
+                      <Text as="span" size="xs" tone="muted" mono>Bottom R</Text>
+                    </Surface>
                   </ResizablePanel>
                 </ResizablePanelGroup>
               </ResizablePanel>
             </ResizablePanelGroup>
-          </div>
-        </div>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock
         title="Sidebar"
         description="A production-style app shell showing the sidebar's best composition patterns: provider state, inset content, trigger, icon collapse, nested menus, and footer actions."
       >
-        <div className="overflow-hidden rounded-lg border border-border" style={{ height: 420 }}>
+        <div style={{ overflow: "hidden", borderRadius: "var(--radius-lg)", border: "1px solid var(--border)", height: 420 }}>
           <SidebarProvider
             defaultOpen
-            className="h-full min-h-0 bg-sidebar"
             style={{
               height: "100%",
               minHeight: 0,
+              background: "var(--sidebar)",
               "--sidebar-wrapper-height": "100%",
               "--sidebar-wrapper-min-height": "100%",
             } as React.CSSProperties}
@@ -226,15 +240,14 @@ export function SectionLayout() {
                   <SidebarMenuItem>
                     <SidebarMenuButton size="lg" tooltip="Lyttle Framework workspace">
                       <div
-                        className="flex size-8 items-center justify-center rounded-lg text-white"
-                        style={{ background: "var(--brand-gradient-primary)" }}
+                        style={{ display: "flex", width: "2rem", height: "2rem", alignItems: "center", justifyContent: "center", borderRadius: "var(--radius-lg)", background: "var(--brand-gradient-primary)", color: "white" }}
                       >
-                        <Sparkles className="size-4" />
+                        <Sparkles size={16} />
                       </div>
-                      <div className="grid flex-1 text-left leading-tight">
-                        <span className="truncate font-semibold text-sm">Lyttle Framework</span>
-                        <span className="truncate text-xs text-muted-foreground">Docs workspace</span>
-                      </div>
+                      <Stack gap="xs" align="start" style={{ flex: 1, minWidth: 0 }}>
+                        <Text as="span" size="sm" weight="semibold" truncate>Lyttle Framework</Text>
+                        <Text as="span" size="xs" tone="muted" truncate>Docs workspace</Text>
+                      </Stack>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -245,7 +258,7 @@ export function SectionLayout() {
                 <SidebarGroup>
                   <SidebarGroupLabel>Workspace</SidebarGroupLabel>
                   <SidebarGroupAction aria-label="Create a new view">
-                    <Plus className="size-4" />
+                    <Plus size={16} />
                   </SidebarGroupAction>
                   <SidebarGroupContent>
                     <SidebarMenu>
@@ -255,7 +268,7 @@ export function SectionLayout() {
                             isActive={item.isActive}
                             tooltip={item.label}
                           >
-                            <item.icon className="size-4" />
+                            <item.icon size={16} />
                             <span>{item.label}</span>
                           </SidebarMenuButton>
                           {item.badge ? <SidebarMenuBadge>{item.badge}</SidebarMenuBadge> : null}
@@ -273,7 +286,7 @@ export function SectionLayout() {
                     <SidebarMenu>
                       <SidebarMenuItem>
                         <SidebarMenuButton tooltip="Design system">
-                          <Palette className="size-4" />
+                          <Palette size={16} />
                           <span>Design system</span>
                         </SidebarMenuButton>
                         <SidebarMenuAction
@@ -281,7 +294,7 @@ export function SectionLayout() {
                           showOnHover
                           aria-label="Open design system links"
                         >
-                          <ChevronRight className="size-4" />
+                          <ChevronRight size={16} />
                         </SidebarMenuAction>
                         <SidebarMenuSub>
                           <SidebarMenuSubItem>
@@ -299,7 +312,7 @@ export function SectionLayout() {
 
                       <SidebarMenuItem>
                         <SidebarMenuButton size="sm" tooltip="Quick search">
-                          <Search className="size-4" />
+                          <Search size={16} />
                           <span>Quick search</span>
                         </SidebarMenuButton>
                         <SidebarMenuAction
@@ -307,7 +320,7 @@ export function SectionLayout() {
                           showOnHover
                           aria-label="Jump to quick search"
                         >
-                          <Command className="size-3.5" />
+                          <Command size={14} />
                         </SidebarMenuAction>
                       </SidebarMenuItem>
                     </SidebarMenu>
@@ -319,19 +332,19 @@ export function SectionLayout() {
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton tooltip="Get help">
-                      <HelpCircle className="size-4" />
+                      <HelpCircle size={16} />
                       <span>Support & guides</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton size="lg" tooltip="Signed in as Sarah Chen">
-                      <UserCircle2 className="size-4" />
-                      <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">Sarah Chen</span>
-                        <span className="truncate text-xs text-muted-foreground">
+                      <UserCircle2 size={16} />
+                      <Stack gap="xs" align="start" style={{ flex: 1, minWidth: 0 }}>
+                        <Text as="span" size="sm" weight="semibold" truncate>Sarah Chen</Text>
+                        <Text as="span" size="xs" tone="muted" truncate>
                           Design engineer
-                        </span>
-                      </div>
+                        </Text>
+                      </Stack>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -340,79 +353,76 @@ export function SectionLayout() {
               <SidebarRail />
             </Sidebar>
 
-            <SidebarInset className="min-w-0 overflow-hidden">
-              <header className="flex h-14 items-center gap-3 border-b border-border bg-background/95 px-4">
+            <SidebarInset style={{ minWidth: 0, overflow: "hidden" }}>
+              <header style={{ display: "flex", minHeight: "3.5rem", alignItems: "center", gap: "0.75rem", borderBottom: "1px solid var(--border)", background: "color-mix(in oklab, var(--background) 95%, transparent)", paddingInline: "1rem" }}>
                 <SidebarTrigger />
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-semibold text-foreground">Sidebar app shell</p>
-                  <p className="truncate text-xs text-muted-foreground">
+                <Stack gap="xs" align="start" style={{ flex: 1, minWidth: 0 }}>
+                  <Text as="p" size="sm" weight="semibold" truncate>Sidebar app shell</Text>
+                  <Text as="p" size="xs" tone="muted" truncate>
                     Collapse to icon mode, hover for tooltips, or press Ctrl/Cmd + B.
-                  </p>
-                </div>
-                <Badge variant="secondary" className="hidden sm:inline-flex">
+                  </Text>
+                </Stack>
+                <Badge variant="secondary">
                   inset + icon collapse
                 </Badge>
               </header>
 
-              <div className="grid h-[calc(100%-3.5rem)] gap-4 overflow-auto p-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(240px,0.9fr)]">
-                <div className="space-y-4">
-                  <div className="grid gap-3 sm:grid-cols-3">
+              <Grid layout="content-sidebar" gap="md" style={{ height: "calc(100% - 3.5rem)", overflow: "auto", padding: "1rem" }}>
+                <Stack gap="md" align="start">
+                  <Grid columns={1} smColumns={3} gap="sm" style={{ width: "100%" }}>
                     <Card>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-xs font-medium text-muted-foreground">
-                          Sidebar states
-                        </CardTitle>
+                      <CardHeader>
+                        <Text as="div" size="xs" weight="medium" tone="muted">Sidebar states</Text>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-2xl font-semibold text-foreground">3</p>
-                        <p className="text-xs text-muted-foreground">Expanded, icon, mobile sheet</p>
+                        <Text as="p" size="2xl" weight="semibold">3</Text>
+                        <Text as="p" size="xs" tone="muted">Expanded, icon, mobile sheet</Text>
                       </CardContent>
                     </Card>
                     <Card>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-xs font-medium text-muted-foreground">
-                          Navigation depth
-                        </CardTitle>
+                      <CardHeader>
+                        <Text as="div" size="xs" weight="medium" tone="muted">Navigation depth</Text>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-2xl font-semibold text-foreground">2 levels</p>
-                        <p className="text-xs text-muted-foreground">Menu items plus nested sub-links</p>
+                        <Text as="p" size="2xl" weight="semibold">2 levels</Text>
+                        <Text as="p" size="xs" tone="muted">Menu items plus nested sub-links</Text>
                       </CardContent>
                     </Card>
                     <Card>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-xs font-medium text-muted-foreground">
-                          Discoverability
-                        </CardTitle>
+                      <CardHeader>
+                        <Text as="div" size="xs" weight="medium" tone="muted">Discoverability</Text>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-2xl font-semibold text-foreground">Built in</p>
-                        <p className="text-xs text-muted-foreground">Tooltips, badges, rail, shortcut</p>
+                        <Text as="p" size="2xl" weight="semibold">Built in</Text>
+                        <Text as="p" size="xs" tone="muted">Tooltips, badges, rail, shortcut</Text>
                       </CardContent>
                     </Card>
-                  </div>
+                  </Grid>
 
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-sm">Why this is the recommended setup</CardTitle>
+                      <Text as="div" size="sm" weight="semibold">Why this is the recommended setup</Text>
                     </CardHeader>
-                    <CardContent className="space-y-3">
+                    <CardContent>
+                      <Stack gap="sm" align="start">
                       {sidebarHighlights.map((item) => (
-                        <div key={item.title} className="rounded-lg border border-border bg-muted/20 p-3">
-                          <p className="text-sm font-medium text-foreground">{item.title}</p>
-                          <p className="mt-1 text-sm text-muted-foreground">{item.description}</p>
-                        </div>
+                        <Surface key={item.title} tone="muted" padding="sm" radius="lg" shadow="none">
+                          <Text as="p" size="sm" weight="medium">{item.title}</Text>
+                          <Text as="p" size="sm" tone="muted">{item.description}</Text>
+                        </Surface>
                       ))}
+                      </Stack>
                     </CardContent>
                   </Card>
-                </div>
+                </Stack>
 
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-sm">Patterns demonstrated</CardTitle>
+                    <Text as="div" size="sm" weight="semibold">Patterns demonstrated</Text>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
+                  <CardContent>
+                    <Stack gap="md" align="start">
+                    <Inline gap="sm">
                       {[
                         "SidebarProvider",
                         "SidebarInset",
@@ -425,37 +435,40 @@ export function SectionLayout() {
                           {item}
                         </Badge>
                       ))}
-                    </div>
+                    </Inline>
 
-                    <div className="rounded-lg border border-border bg-muted/20 p-3 text-sm text-muted-foreground">
+                    <Surface tone="muted" padding="sm" radius="lg" shadow="none">
+                      <Text as="p" size="sm" tone="muted">
                       Keep the source component generic and put product-specific content in the
                       header, grouped menu sections, and footer. That way the shared sidebar stays
                       reusable across admin apps, docs, dashboards, and internal tools.
-                    </div>
+                      </Text>
+                    </Surface>
 
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <p className="font-medium text-foreground">Implementation notes</p>
-                      <ul className="list-disc space-y-1 pl-5">
+                    <Stack gap="xs" align="start">
+                      <Text as="p" size="sm" weight="medium">Implementation notes</Text>
+                      <Stack as="ul" gap="xs" style={{ margin: 0, paddingLeft: "1.25rem" }}>
                         <li>Use `tooltip` on menu buttons when `collapsible=&quot;icon&quot;` is enabled.</li>
                         <li>Pair badges and hover actions with the shared sidebar slots instead of ad-hoc absolute positioning.</li>
                         <li>Constrain the provider with `className=&quot;h-full min-h-0&quot;` when embedding demos inside docs pages.</li>
-                      </ul>
-                    </div>
+                      </Stack>
+                    </Stack>
+                    </Stack>
                   </CardContent>
                 </Card>
-              </div>
+              </Grid>
             </SidebarInset>
           </SidebarProvider>
         </div>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Spacing & Radius Scale" description="Design token reference for spacing and border radius">
-        <div className="space-y-6">
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+        <Stack gap="xl" align="start">
+          <Stack gap="sm" align="start">
+            <Text as="p" size="xs" weight="semibold" tone="muted" transform="uppercase">
               Border Radius
-            </p>
-            <div className="flex flex-wrap gap-4 items-end">
+            </Text>
+            <Inline gap="md" align="end">
               {[
                 { label: "sm", value: "var(--radius-sm)" },
                 { label: "md", value: "var(--radius-md)" },
@@ -464,21 +477,20 @@ export function SectionLayout() {
                 { label: "2xl", value: "var(--radius-2xl)" },
                 { label: "full", value: "9999px" },
               ].map((r) => (
-                <div key={r.label} className="flex flex-col items-center gap-2">
+                <Stack key={r.label} gap="xs" align="center">
                   <div
-                    className="h-10 w-10 bg-primary/20 border border-primary/40"
-                    style={{ borderRadius: r.value }}
+                    style={{ width: "2.5rem", height: "2.5rem", background: "color-mix(in oklab, var(--primary) 20%, transparent)", border: "1px solid color-mix(in oklab, var(--primary) 40%, transparent)", borderRadius: r.value }}
                   />
-                  <span className="text-xs text-muted-foreground">{r.label}</span>
-                </div>
+                  <Text as="span" size="xs" tone="muted">{r.label}</Text>
+                </Stack>
               ))}
-            </div>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+            </Inline>
+          </Stack>
+          <Stack gap="sm" align="start">
+            <Text as="p" size="xs" weight="semibold" tone="muted" transform="uppercase">
               Shadow Scale
-            </p>
-            <div className="flex flex-wrap gap-4">
+            </Text>
+            <Inline gap="md">
               {[
                 { label: "none", shadow: "none" },
                 { label: "sm", shadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)" },
@@ -486,17 +498,16 @@ export function SectionLayout() {
                 { label: "lg", shadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" },
                 { label: "xl", shadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" },
               ].map((s) => (
-                <div key={s.label} className="flex flex-col items-center gap-2">
+                <Stack key={s.label} gap="xs" align="center">
                   <div
-                    className="h-12 w-16 rounded-lg bg-card border border-border"
-                    style={{ boxShadow: s.shadow }}
+                    style={{ width: "4rem", height: "3rem", borderRadius: "var(--radius-lg)", background: "var(--card)", border: "1px solid var(--border)", boxShadow: s.shadow }}
                   />
-                  <span className="text-xs text-muted-foreground">{s.label}</span>
-                </div>
+                  <Text as="span" size="xs" tone="muted">{s.label}</Text>
+                </Stack>
               ))}
-            </div>
-          </div>
-        </div>
+            </Inline>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
     </ShowcaseSection>
   );

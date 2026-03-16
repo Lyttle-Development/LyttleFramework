@@ -25,6 +25,16 @@
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 25%, transparent);
   }
 
+  &[data-validation="success"] {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px color-mix(in oklab, #22c55e 22%, transparent);
+  }
+
+  &[data-validation="error"] {
+    border-color: var(--destructive);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 25%, transparent);
+  }
+
   &:disabled {
     background: color-mix(in oklab, var(--input) 60%, transparent);
   }

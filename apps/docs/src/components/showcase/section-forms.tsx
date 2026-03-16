@@ -16,6 +16,7 @@ import { Button } from "@lyttle/ui";
 import { Field } from "@lyttle/ui";
 import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@lyttle/ui";
 import { Combobox } from "@lyttle/ui";
+import { Grid, Inline, Stack, Surface, Text } from "@lyttle/ui/components/layout/layout";
 
 const frameworks = [
   { value: "next", label: "Next.js" },
@@ -35,19 +36,19 @@ export function SectionForms() {
       description="All form primitives with accessible labels, validation states, and helper text."
     >
       <ShowcaseBlock title="Text Inputs">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
+        <Grid columns={1} mdColumns={2} gap="lg">
+          <Stack gap="xs" align="start">
             <Label htmlFor="input-default">Default input</Label>
             <Input id="input-default" placeholder="Enter text…" />
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label htmlFor="input-disabled">Disabled</Label>
             <Input id="input-disabled" placeholder="Not editable" disabled />
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label htmlFor="input-error">
               Email{" "}
-              <span className="text-destructive" aria-hidden="true">*</span>
+              <Text as="span" tone="destructive" aria-hidden="true">*</Text>
             </Label>
             <Input
               id="input-error"
@@ -55,45 +56,45 @@ export function SectionForms() {
               placeholder="you@example.com"
               aria-invalid="true"
               aria-describedby="input-error-msg"
-              className="border-destructive focus-visible:ring-destructive"
+              validation="error"
             />
-            <p id="input-error-msg" className="text-xs text-destructive" role="alert">
+            <Text id="input-error-msg" as="p" size="xs" tone="destructive" role="alert">
               Please enter a valid email address.
-            </p>
-          </div>
-          <div className="space-y-2">
+            </Text>
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label htmlFor="input-success">Username</Label>
             <Input
               id="input-success"
               defaultValue="lyttle_dev"
               aria-describedby="input-success-msg"
-              className="border-green-500 focus-visible:ring-green-500"
+              validation="success"
             />
-            <p id="input-success-msg" className="text-xs text-green-600 dark:text-green-400">
+            <Text id="input-success-msg" as="p" size="xs" tone="primary">
               Username is available ✓
-            </p>
-          </div>
-        </div>
+            </Text>
+          </Stack>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Input Groups" description="Decorated inputs with prefixes/suffixes">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
+        <Grid columns={1} mdColumns={2} gap="lg">
+          <Stack gap="xs" align="start">
             <Label>Website URL</Label>
             <InputGroup>
               <InputGroupText>https://</InputGroupText>
               <InputGroupInput placeholder="yoursite.com" />
             </InputGroup>
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label>Amount</Label>
             <InputGroup>
               <InputGroupText>€</InputGroupText>
               <InputGroupInput type="number" placeholder="0.00" />
               <InputGroupText>EUR</InputGroupText>
             </InputGroup>
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label>Search</Label>
             <InputGroup>
               <InputGroupText>
@@ -103,19 +104,19 @@ export function SectionForms() {
               </InputGroupText>
               <InputGroupInput placeholder="Search components…" />
             </InputGroup>
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label>Twitter</Label>
             <InputGroup>
               <InputGroupText>@</InputGroupText>
               <InputGroupInput placeholder="username" />
             </InputGroup>
-          </div>
-        </div>
+          </Stack>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Field Component" description="Field wraps label + input + description + error">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Grid columns={1} mdColumns={2} gap="lg">
           <Field
             label="Full Name"
             description="As it appears on your ID"
@@ -130,11 +131,11 @@ export function SectionForms() {
           >
             <Input id="field-pw" type="password" placeholder="••••••••" />
           </Field>
-        </div>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Textarea">
-        <div className="space-y-2 max-w-lg">
+        <Stack gap="xs" align="start" style={{ maxWidth: "32rem" }}>
           <Label htmlFor="textarea-main">Message</Label>
           <Textarea
             id="textarea-main"
@@ -142,18 +143,18 @@ export function SectionForms() {
             rows={4}
             aria-describedby="textarea-hint"
           />
-          <p id="textarea-hint" className="text-xs text-muted-foreground">
+          <Text id="textarea-hint" as="p" size="xs" tone="muted">
             Max 500 characters. Plain text only.
-          </p>
-        </div>
+          </Text>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Select & Combobox">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="space-y-2">
+        <Grid columns={1} mdColumns={3} gap="lg">
+          <Stack gap="xs" align="start">
             <Label htmlFor="select-role">Role</Label>
             <Select>
-              <SelectTrigger id="select-role" className="w-full">
+              <SelectTrigger id="select-role">
                 <SelectValue placeholder="Select a role…" />
               </SelectTrigger>
               <SelectContent>
@@ -163,8 +164,8 @@ export function SectionForms() {
                 <SelectItem value="guest" disabled>Guest (unavailable)</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label htmlFor="native-select">Country</Label>
             <NativeSelect id="native-select">
               <option value="">Select country…</option>
@@ -173,8 +174,8 @@ export function SectionForms() {
               <option value="de">Germany</option>
               <option value="fr">France</option>
             </NativeSelect>
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start">
             <Label>Framework</Label>
             <Combobox
               options={frameworks}
@@ -182,101 +183,97 @@ export function SectionForms() {
               searchPlaceholder="Search frameworks…"
               emptyMessage="No framework found."
             />
-          </div>
-        </div>
+          </Stack>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Checkbox & Radio">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <p className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+        <Grid columns={1} mdColumns={2} gap="xl">
+          <Stack gap="sm" align="start">
+            <Text as="p" size="sm" weight="semibold" tone="muted" transform="uppercase">
               Checkboxes
-            </p>
-            <div className="space-y-3">
+            </Text>
+            <Stack gap="sm" align="start">
               {[
                 { id: "cb1", label: "Accept terms and conditions", defaultChecked: true },
                 { id: "cb2", label: "Subscribe to newsletter" },
                 { id: "cb3", label: "Disabled option", disabled: true },
                 { id: "cb4", label: "Disabled checked", disabled: true, defaultChecked: true },
               ].map((item) => (
-                <div key={item.id} className="flex items-center gap-3">
+                <Inline key={item.id} gap="sm">
                   <Checkbox
                     id={item.id}
                     defaultChecked={item.defaultChecked}
                     disabled={item.disabled}
                     aria-label={item.label}
                   />
-                  <Label
-                    htmlFor={item.id}
-                    className={item.disabled ? "text-muted-foreground cursor-not-allowed" : "cursor-pointer"}
-                  >
+                  <Label htmlFor={item.id}>
                     {item.label}
                   </Label>
-                </div>
+                </Inline>
               ))}
-            </div>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+            </Stack>
+          </Stack>
+          <Stack gap="sm" align="start">
+            <Text as="p" size="sm" weight="semibold" tone="muted" transform="uppercase">
               Radio Group
-            </p>
+            </Text>
             <RadioGroup defaultValue="standard" aria-label="Delivery speed">
               {[
                 { value: "express", label: "Express (1–2 days)", hint: "€8.99" },
                 { value: "standard", label: "Standard (3–5 days)", hint: "€3.99" },
                 { value: "free", label: "Free (7–10 days)", hint: "Free" },
               ].map((item) => (
-                <div key={item.value} className="flex items-start gap-3">
+                <Inline key={item.value} gap="sm" align="start" wrap={false}>
                   <RadioGroupItem
                     value={item.value}
                     id={`radio-${item.value}`}
-                    className="mt-0.5"
                   />
-                  <Label htmlFor={`radio-${item.value}`} className="cursor-pointer flex flex-col gap-1 leading-snug">
-                    <span className="block">{item.label}</span>
-                    <span className="text-xs text-muted-foreground">{item.hint}</span>
-                  </Label>
-                </div>
+                  <Stack gap="xs" align="start">
+                    <Label htmlFor={`radio-${item.value}`}>{item.label}</Label>
+                    <Text as="span" size="xs" tone="muted">{item.hint}</Text>
+                  </Stack>
+                </Inline>
               ))}
             </RadioGroup>
-          </div>
-        </div>
+          </Stack>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Switch">
-        <div className="space-y-4">
+        <Stack gap="md" align="start">
           {[
             { id: "sw1", label: "Email notifications", description: "Receive updates via email", defaultChecked: true },
             { id: "sw2", label: "Push notifications", description: "Browser push alerts" },
             { id: "sw3", label: "Disabled option", disabled: true },
           ].map((item) => (
-            <div key={item.id} className="flex items-center justify-between gap-4 max-w-sm">
-              <div className="space-y-1">
-                <Label htmlFor={item.id} className={item.disabled ? "text-muted-foreground" : ""}>
+            <Inline key={item.id} gap="md" justify="between" style={{ width: "100%", maxWidth: "24rem" }}>
+              <Stack gap="xs" align="start">
+                <Label htmlFor={item.id}>
                   {item.label}
                 </Label>
                 {item.description && (
-                  <p className="text-xs text-muted-foreground">{item.description}</p>
+                  <Text as="p" size="xs" tone="muted">{item.description}</Text>
                 )}
-              </div>
+              </Stack>
               <Switch
                 id={item.id}
                 defaultChecked={item.defaultChecked}
                 disabled={item.disabled}
                 aria-label={item.label}
               />
-            </div>
+            </Inline>
           ))}
-        </div>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Slider">
-        <div className="space-y-6 max-w-sm">
-          <div className="space-y-2">
-            <div className="flex justify-between">
+        <Stack gap="lg" align="start" style={{ maxWidth: "24rem" }}>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Inline justify="between" style={{ width: "100%" }}>
               <Label>Volume</Label>
-              <span className="text-sm text-muted-foreground">{sliderVal[0]}%</span>
-            </div>
+              <Text as="span" size="sm" tone="muted">{sliderVal[0]}%</Text>
+            </Inline>
             <Slider
               value={sliderVal}
               onValueChange={(v) => setSliderVal(Array.isArray(v) ? [...v] : [v])}
@@ -285,17 +282,17 @@ export function SectionForms() {
               step={1}
               aria-label="Volume"
             />
-          </div>
-          <div className="space-y-2">
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
             <Label>Disabled slider</Label>
             <Slider defaultValue={[25]} disabled aria-label="Disabled slider" />
-          </div>
-        </div>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="OTP Input" description="One-time passcode input for 2FA flows">
-        <div className="space-y-4">
-          <div className="space-y-2">
+        <Stack gap="md" align="start">
+          <Stack gap="xs" align="start">
             <Label>Enter verification code</Label>
             <InputOTP maxLength={6} aria-label="One-time password">
               <InputOTPGroup>
@@ -310,56 +307,53 @@ export function SectionForms() {
                 <InputOTPSlot index={5} />
               </InputOTPGroup>
             </InputOTP>
-            <p className="text-xs text-muted-foreground">
+            <Text as="p" size="xs" tone="muted">
               Check your email for the 6-digit code.
-            </p>
-          </div>
-        </div>
+            </Text>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Complete Form Example" description="A realistic sign-up form using the full system">
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="space-y-5 max-w-md"
-          aria-label="Sign up form"
-          noValidate
-        >
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="form-first">First name <span className="text-destructive" aria-hidden="true">*</span></Label>
+        <Stack as="form" onSubmit={(e) => e.preventDefault()} gap="lg" aria-label="Sign up form" noValidate style={{ maxWidth: "28rem" }}>
+          <Grid columns={2} gap="md">
+            <Stack gap="xs" align="start">
+              <Label htmlFor="form-first">First name <Text as="span" tone="destructive" aria-hidden="true">*</Text></Label>
               <Input id="form-first" autoComplete="given-name" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="form-last">Last name <span className="text-destructive" aria-hidden="true">*</span></Label>
+            </Stack>
+            <Stack gap="xs" align="start">
+              <Label htmlFor="form-last">Last name <Text as="span" tone="destructive" aria-hidden="true">*</Text></Label>
               <Input id="form-last" autoComplete="family-name" required />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="form-email">Email <span className="text-destructive" aria-hidden="true">*</span></Label>
+            </Stack>
+          </Grid>
+          <Stack gap="xs" align="start">
+            <Label htmlFor="form-email">Email <Text as="span" tone="destructive" aria-hidden="true">*</Text></Label>
             <Input id="form-email" type="email" autoComplete="email" required placeholder="you@example.com" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="form-pw">Password <span className="text-destructive" aria-hidden="true">*</span></Label>
+          </Stack>
+          <Stack gap="xs" align="start">
+            <Label htmlFor="form-pw">Password <Text as="span" tone="destructive" aria-hidden="true">*</Text></Label>
             <Input id="form-pw" type="password" autoComplete="new-password" required />
-            <p className="text-xs text-muted-foreground">Min 8 chars, one number, one symbol.</p>
-          </div>
-          <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/20 px-3 py-3">
-            <Checkbox id="form-terms" required aria-required="true" className="mt-0.5" />
-            <Label htmlFor="form-terms" className="text-sm leading-relaxed cursor-pointer inline">
+            <Text as="p" size="xs" tone="muted">Min 8 chars, one number, one symbol.</Text>
+          </Stack>
+          <Surface tone="muted" padding="md" radius="lg" shadow="none">
+            <Inline gap="sm" align="start" wrap={false}>
+            <Checkbox id="form-terms" required aria-required="true" />
+            <Text as="label" htmlFor="form-terms" size="sm">
               I agree to the{" "}
-              <a href="#forms" className="text-primary">Terms of Service</a>{" "}
+              <a href="#forms">Terms of Service</a>{" "}
               and{" "}
-              <a href="#forms" className="text-primary">Privacy Policy</a>
-            </Label>
-          </div>
+              <a href="#forms">Privacy Policy</a>
+            </Text>
+            </Inline>
+          </Surface>
           <Button
             type="submit"
-            className="w-full text-white border-0"
-            style={{ background: "var(--brand-gradient-primary)" }}
+            variant="brand"
+            style={{ width: "100%" }}
           >
             Create account
           </Button>
-        </form>
+        </Stack>
       </ShowcaseBlock>
     </ShowcaseSection>
   );

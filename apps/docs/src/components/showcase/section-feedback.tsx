@@ -11,6 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@lyttle/ui";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@lyttle/ui";
 import { Button } from "@lyttle/ui";
 import { Toaster } from "@lyttle/ui";
+import { Inline, Stack, Text } from "@lyttle/ui/components/layout/layout";
 import { toast } from "sonner";
 
 function InfoIcon() {
@@ -45,17 +46,6 @@ function XCircleIcon() {
 export function SectionFeedback() {
   const [progress, setProgress] = React.useState(18);
 
-  const primaryGradientStyle = {
-    backgroundImage: "var(--brand-gradient-primary)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 100%",
-  } as const;
-  const accentGradientStyle = {
-    backgroundImage: "var(--brand-gradient-accent)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 100%",
-  } as const;
-
   React.useEffect(() => {
     let direction = 1;
 
@@ -81,180 +71,160 @@ export function SectionFeedback() {
       description="Alerts, toasts, progress, loading states, avatars, badges, and tooltips."
     >
       <ShowcaseBlock title="Alerts" description="Informational, success, warning, and error variants">
-        <div className="space-y-3">
-          <Alert className="border-blue-500/40 bg-blue-50 text-blue-900 dark:bg-blue-950/30 dark:text-blue-100 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-300">
+        <Stack gap="sm" align="start">
+          <Alert variant="info">
             <InfoIcon />
             <AlertTitle>Information</AlertTitle>
-            <AlertDescription className="text-inherit/80">
+            <AlertDescription>
               Your account settings have been saved. Changes may take a few moments
               to propagate across the system.
             </AlertDescription>
           </Alert>
 
-          <Alert className="border-green-500/50 bg-green-50 dark:bg-green-950/30 text-green-800 dark:text-green-200 [&>svg]:text-green-600">
+          <Alert variant="success">
             <CheckIcon />
             <AlertTitle>Success</AlertTitle>
-            <AlertDescription className="text-inherit/80">
+            <AlertDescription>
               Your order has been placed successfully. You will receive a
               confirmation email within 5 minutes.
             </AlertDescription>
           </Alert>
 
-          <Alert className="border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/30 text-yellow-800 dark:text-yellow-200 [&>svg]:text-yellow-600">
+          <Alert variant="warning">
             <AlertTriangleIcon />
             <AlertTitle>Warning</AlertTitle>
-            <AlertDescription className="text-inherit/80">
+            <AlertDescription>
               Your subscription expires in 3 days. Please update your payment
               method to avoid interruption.
             </AlertDescription>
           </Alert>
 
-          <Alert className="border-red-500/40 bg-red-50 text-red-900 dark:bg-red-950/30 dark:text-red-100 [&>svg]:text-red-600 dark:[&>svg]:text-red-300">
+          <Alert variant="error">
             <XCircleIcon />
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription className="text-inherit/80">
+            <AlertDescription>
               We could not process your request. Please check your input and try
               again, or contact support if the issue persists.
             </AlertDescription>
           </Alert>
-        </div>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Badges" description="Status and label badges in all variants">
-        <div className="flex flex-wrap gap-3 items-center">
+        <Inline gap="sm">
           <Badge>Default</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="outline">Outline</Badge>
           <Badge variant="destructive">Destructive</Badge>
 
-          {/* Custom semantic badges */}
-          <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 border-green-200 dark:border-green-800">
-            Active
-          </Badge>
-          <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 border-yellow-200 dark:border-yellow-800">
-            Pending
-          </Badge>
-          <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 border-blue-200 dark:border-blue-800">
-            In Review
-          </Badge>
-          <Badge className="bg-muted text-muted-foreground">Archived</Badge>
-
-          {/* Brand badges */}
-          <Badge
-            className="border-transparent text-white"
-            style={primaryGradientStyle}
-          >
-            Brand
-          </Badge>
-          <Badge
-            className="border-transparent text-white"
-            style={accentGradientStyle}
-          >
-            Accent
-          </Badge>
-        </div>
+          <Badge variant="success">Active</Badge>
+          <Badge variant="warning">Pending</Badge>
+          <Badge variant="info">In Review</Badge>
+          <Badge variant="muted">Archived</Badge>
+          <Badge variant="brand">Brand</Badge>
+          <Badge variant="accent">Accent</Badge>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Progress" description="Determinate progress bars">
-        <div className="space-y-4 max-w-md">
-          <div className="space-y-1.5">
-            <div className="flex justify-between text-sm">
-              <span className="text-foreground">Upload progress</span>
-              <span className="text-muted-foreground">{progress}%</span>
-            </div>
+        <Stack gap="md" align="start" style={{ maxWidth: "28rem" }}>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Inline justify="between" style={{ width: "100%" }}>
+              <Text as="span" size="sm">Upload progress</Text>
+              <Text as="span" size="sm" tone="muted">{progress}%</Text>
+            </Inline>
             <Progress value={progress} aria-label={`Upload: ${progress}%`} />
-          </div>
-          <div className="space-y-1.5">
-            <div className="flex justify-between text-sm">
-              <span className="text-foreground">Profile complete</span>
-              <span className="text-muted-foreground">75%</span>
-            </div>
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Inline justify="between" style={{ width: "100%" }}>
+              <Text as="span" size="sm">Profile complete</Text>
+              <Text as="span" size="sm" tone="muted">75%</Text>
+            </Inline>
             <Progress value={75} aria-label="Profile: 75% complete" />
-          </div>
-          <div className="space-y-1.5">
-            <span className="text-sm text-foreground">Step 2 of 5</span>
+          </Stack>
+          <Stack gap="xs" align="start" style={{ width: "100%" }}>
+            <Text as="span" size="sm">Step 2 of 5</Text>
             <Progress value={40} aria-label="Step 2 of 5" />
-          </div>
-        </div>
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Spinners & Loading" description="Loading indicators in all sizes">
-        <div className="flex flex-wrap gap-6 items-center">
-          <div className="flex flex-col items-center gap-2">
+        <Inline gap="lg">
+          <Stack gap="xs" align="center">
             <Spinner size="sm" />
-            <span className="text-xs text-muted-foreground">sm</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
+            <Text as="span" size="xs" tone="muted">sm</Text>
+          </Stack>
+          <Stack gap="xs" align="center">
             <Spinner />
-            <span className="text-xs text-muted-foreground">default</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
+            <Text as="span" size="xs" tone="muted">default</Text>
+          </Stack>
+          <Stack gap="xs" align="center">
             <Spinner size="lg" />
-            <span className="text-xs text-muted-foreground">lg</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
+            <Text as="span" size="xs" tone="muted">lg</Text>
+          </Stack>
+          <Stack gap="xs" align="center">
             <Spinner size="xl" />
-            <span className="text-xs text-muted-foreground">xl</span>
-          </div>
-        </div>
+            <Text as="span" size="xs" tone="muted">xl</Text>
+          </Stack>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Skeleton" description="Content placeholder during loading">
-        <div className="space-y-4 max-w-sm">
+        <Stack gap="md" align="start" style={{ maxWidth: "24rem" }}>
           {/* Card skeleton */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <Skeleton className="h-10 w-10 rounded-full" />
-              <div className="space-y-2 flex-1">
-                <Skeleton className="h-3 w-3/4" />
-                <Skeleton className="h-3 w-1/2" />
-              </div>
-            </div>
-            <Skeleton className="h-32 w-full rounded-lg" />
-            <Skeleton className="h-3 w-full" />
-            <Skeleton className="h-3 w-5/6" />
-            <Skeleton className="h-3 w-4/6" />
-          </div>
-        </div>
+          <Stack gap="sm" align="start" style={{ width: "100%" }}>
+            <Inline gap="sm" style={{ width: "100%" }}>
+              <Skeleton style={{ width: "2.5rem", height: "2.5rem", borderRadius: "999px" }} />
+              <Stack gap="xs" style={{ width: "100%" }}>
+                <Skeleton style={{ width: "75%", height: "0.75rem" }} />
+                <Skeleton style={{ width: "50%", height: "0.75rem" }} />
+              </Stack>
+            </Inline>
+            <Skeleton style={{ width: "100%", height: "8rem", borderRadius: "var(--radius-lg)" }} />
+            <Skeleton style={{ width: "100%", height: "0.75rem" }} />
+            <Skeleton style={{ width: "83.333333%", height: "0.75rem" }} />
+            <Skeleton style={{ width: "66.666667%", height: "0.75rem" }} />
+          </Stack>
+        </Stack>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Avatar" description="User avatars with image, fallback, and size variants">
-        <div className="flex flex-wrap gap-4 items-end">
+        <Inline gap="md" align="end">
           {/* With image */}
-          <div className="flex flex-col items-center gap-2">
-            <Avatar className="h-16 w-16">
+          <Stack gap="xs" align="center">
+            <Avatar size="lg">
               <AvatarImage src="https://github.com/vercel.png" alt="Profile" />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
-            <span className="text-xs text-muted-foreground">With image</span>
-          </div>
+            <Text as="span" size="xs" tone="muted">With image</Text>
+          </Stack>
 
           {/* Fallback only */}
-          <div className="flex flex-col items-center gap-2">
-            <Avatar className="h-16 w-16">
+          <Stack gap="xs" align="center">
+            <Avatar size="lg">
               <AvatarFallback
-                className="text-white font-semibold"
-                style={{ background: "var(--brand-gradient-primary)" }}
+                style={{ background: "var(--brand-gradient-primary)", color: "white", fontWeight: 600 }}
               >
-                <span className="text-white mix-blend-difference">LD</span>
+                <span>LD</span>
               </AvatarFallback>
             </Avatar>
-            <span className="text-xs text-muted-foreground">Brand fallback</span>
-          </div>
+            <Text as="span" size="xs" tone="muted">Brand fallback</Text>
+          </Stack>
 
           {/* Size variants */}
-          {["h-6 w-6", "h-8 w-8", "h-10 w-10", "h-12 w-12"].map((size) => (
-            <Avatar key={size} className={size}>
-              <AvatarFallback className="text-xs bg-secondary text-secondary-foreground">
+          {(["sm", "default", "default", "lg"] as const).map((size, index) => (
+            <Avatar key={`${size}-${index}`} size={size}>
+              <AvatarFallback>
                 JD
               </AvatarFallback>
             </Avatar>
           ))}
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Tooltip" description="Accessible tooltips on hover and focus">
-        <div className="flex flex-wrap gap-4 items-center">
+        <Inline gap="md">
           <Tooltip>
             <TooltipTrigger render={<Button variant="outline" />}>
               Hover me
@@ -274,21 +244,21 @@ export function SectionFeedback() {
           </Tooltip>
 
           <Tooltip>
-            <TooltipTrigger render={<span className="underline decoration-dotted cursor-help text-foreground" />}>
+            <TooltipTrigger render={<Button variant="link" />}>
               What is WCAG?
             </TooltipTrigger>
-            <TooltipContent className="max-w-xs">
+            <TooltipContent style={{ maxWidth: "20rem" }}>
               <p>
                 Web Content Accessibility Guidelines — international standards for
                 making web content more accessible.
               </p>
             </TooltipContent>
           </Tooltip>
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Toast / Sonner" description="Non-blocking notification toasts">
-        <div className="flex flex-wrap gap-3">
+        <Inline gap="sm">
           <Button variant="outline" onClick={() => toast("Component saved successfully.")}>
             Default toast
           </Button>
@@ -327,7 +297,7 @@ export function SectionFeedback() {
           >
             Promise toast
           </Button>
-        </div>
+        </Inline>
         <Toaster />
       </ShowcaseBlock>
     </ShowcaseSection>

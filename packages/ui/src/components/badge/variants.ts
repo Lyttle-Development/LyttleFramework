@@ -11,6 +11,13 @@ const badgeVariants = cva(styles.badge, {
       outline: styles.variantOutline,
       ghost: styles.variantGhost,
       link: styles.variantLink,
+      brand: styles.variantBrand,
+      accent: styles.variantAccent,
+      success: styles.variantSuccess,
+      warning: styles.variantWarning,
+      info: styles.variantInfo,
+      muted: styles.variantMuted,
+      inverse: styles.variantInverse,
     },
   },
   defaultVariants: {

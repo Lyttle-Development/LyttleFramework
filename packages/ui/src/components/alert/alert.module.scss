@@ -44,6 +44,34 @@
   }
 }
 
+.variantInfo {
+  background: color-mix(in oklab, #3b82f6 10%, var(--card));
+  border-color: color-mix(in oklab, #3b82f6 35%, transparent);
+  color: color-mix(in oklab, #2563eb 84%, var(--foreground));
+}
+
+.variantSuccess {
+  background: color-mix(in oklab, #22c55e 10%, var(--card));
+  border-color: color-mix(in oklab, #22c55e 35%, transparent);
+  color: color-mix(in oklab, #16a34a 84%, var(--foreground));
+}
+
+.variantWarning {
+  background: color-mix(in oklab, #eab308 10%, var(--card));
+  border-color: color-mix(in oklab, #eab308 35%, transparent);
+  color: color-mix(in oklab, #a16207 88%, var(--foreground));
+}
+
+.variantError {
+  background: color-mix(in oklab, var(--destructive) 10%, var(--card));
+  border-color: color-mix(in oklab, var(--destructive) 35%, transparent);
+  color: var(--destructive);
+
+  [data-slot="alert-description"] {
+    color: color-mix(in oklab, var(--destructive) 90%, transparent);
+  }
+}
+
 .title {
   font-weight: 500;
 

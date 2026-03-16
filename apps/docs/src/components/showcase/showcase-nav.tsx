@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import { Button } from "@lyttle/ui";
+import { ShowcaseBrand, ShowcaseTopBar } from "@lyttle/ui/components/showcase/showcase";
 
 const navItems = [
   { href: "#colors", label: "Colors" },
@@ -25,53 +26,27 @@ export function ShowcaseNav() {
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-all duration-200 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-md border-border shadow-sm"
-          : "bg-background border-transparent"
-      }`}
-    >
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="flex h-16 items-center justify-between">
-          <Link
-            href="/"
-            className="text-lg font-bold text-foreground no-underline transition-opacity hover:opacity-80"
-            aria-label="Lyttle Framework home"
-          >
-            <span style={{ color: "var(--brand-purple)" }}>Lyttle</span>
-            <span className="text-foreground"> Framework</span>
-          </Link>
-          <nav aria-label="Section navigation">
-            <ul className="m-0 hidden list-none items-center gap-1 p-0 md:flex">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="inline-flex items-center rounded-md px-3 py-2 text-sm text-muted-foreground no-underline transition-colors hover:bg-muted hover:text-foreground"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="flex items-center gap-2">
+    <ShowcaseTopBar
+      scrolled={scrolled}
+      brand={<ShowcaseBrand accent="Lyttle" name="Framework" />}
+      items={navItems}
+      actions={
+        <>
+          <Button asChild variant="outline" size="sm">
             <a
               href="http://localhost:6006"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-1.5 rounded-md border border-border px-3 py-2 text-sm font-medium text-muted-foreground no-underline transition-colors hover:bg-muted hover:text-foreground sm:flex"
               aria-label="Open Storybook component explorer"
             >
               <StorybookIcon />
               Storybook
             </a>
-            <ThemeToggle />
-          </div>
-        </div>
-      </div>
-    </header>
+          </Button>
+          <ThemeToggle />
+        </>
+      }
+    />
   );
 }
 
@@ -116,11 +91,12 @@ function ThemeToggle() {
   };
 
   return (
-    <button
+    <Button
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={dark}
-      className="flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+      variant="ghost"
+      size="icon"
     >
       {dark ? (
         <svg
@@ -154,6 +130,6 @@ function ThemeToggle() {
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
       )}
-    </button>
+    </Button>
   );
 }

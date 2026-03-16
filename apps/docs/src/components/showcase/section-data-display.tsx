@@ -12,6 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@lyttle/ui";
 import { AspectRatio } from "@lyttle/ui";
 import { ScrollArea } from "@lyttle/ui";
 import { Empty } from "@lyttle/ui";
+import { Grid, Inline, Stack, Surface, Text, Heading } from "@lyttle/ui/components/layout/layout";
 
 const invoices = [
   { id: "INV-001", status: "Paid", method: "Credit Card", amount: "€250.00" },
@@ -21,10 +22,10 @@ const invoices = [
   { id: "INV-005", status: "Paid", method: "Bank Transfer", amount: "€120.00" },
 ];
 
-const statusColors: Record<string, string> = {
-  Paid: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  Pending: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
-  Overdue: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+const statusVariants: Record<string, "success" | "warning" | "destructive"> = {
+  Paid: "success",
+  Pending: "warning",
+  Overdue: "destructive",
 };
 
 export function SectionDataDisplay() {
@@ -35,123 +36,127 @@ export function SectionDataDisplay() {
       description="Cards, tables, accordions, tabs, scroll areas, and content containers."
     >
       <ShowcaseBlock title="Cards" description="Surface containers with header, content, and footer">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Grid columns={1} mdColumns={3} gap="md">
           {/* Basic card */}
-          <Card className="shadow-sm">
+          <Card>
             <CardHeader>
               <CardTitle>Project Alpha</CardTitle>
               <CardDescription>Design system implementation</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
+              <Text as="p" size="sm" tone="muted">
                 Building a comprehensive component library for LyttleDevelopment
                 with full WCAG AA compliance.
-              </p>
+              </Text>
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter style={{ justifyContent: "space-between" }}>
               <Badge variant="secondary">In Progress</Badge>
               <Button variant="outline" size="sm">View →</Button>
             </CardFooter>
           </Card>
 
           {/* Featured card */}
-          <Card className="border-primary/20 shadow-sm">
-            <CardHeader className="space-y-3">
-              <div className="inline-flex w-fit items-center rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
-                Most popular
-              </div>
-              <div>
+          <Card>
+            <CardHeader>
+              <Stack gap="sm" align="start">
+              <Badge variant="info">Most popular</Badge>
+              <Stack gap="xs" align="start">
                 <CardTitle>Premium Plan</CardTitle>
                 <CardDescription>
                   Everything you need for design-system scale.
                 </CardDescription>
-              </div>
+              </Stack>
+              </Stack>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold text-foreground">€29<span className="text-lg font-normal text-muted-foreground">/mo</span></div>
-              <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
+              <Heading as="p" size="4xl">€29<Text as="span" size="lg" tone="muted" weight="regular">/mo</Text></Heading>
+              <Stack as="ul" gap="xs" style={{ marginTop: "0.75rem", marginBottom: 0, paddingLeft: "1.25rem" }}>
                 <li>✓ Unlimited projects</li>
                 <li>✓ Priority support</li>
                 <li>✓ Custom domain</li>
-              </ul>
+              </Stack>
             </CardContent>
             <CardFooter>
-              <Button className="w-full border-transparent text-white" style={{ backgroundImage: "var(--brand-gradient-primary)", backgroundRepeat: "no-repeat", backgroundSize: "100% 100%" }}>
+              <Button variant="brand" style={{ width: "100%" }}>
                 Get started
               </Button>
             </CardFooter>
           </Card>
 
           {/* Stat card */}
-          <Card className="shadow-sm">
-            <CardHeader className="pb-2">
+          <Card>
+            <CardHeader>
               <CardDescription>Total Revenue</CardDescription>
-              <CardTitle className="text-3xl">€12,450</CardTitle>
+              <Heading as="p" size="3xl">€12,450</Heading>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+            <CardContent>
+              <Stack gap="sm" align="start">
+              <Text as="p" size="xs" tone="primary" weight="medium">
                 ↑ 12.5% from last month
-              </p>
-              <div className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2 text-xs text-muted-foreground">
+              </Text>
+              <Surface tone="muted" padding="sm" radius="lg" shadow="none">
+                <Text as="p" size="xs" tone="muted">
                 Best performing segment: enterprise subscriptions.
-              </div>
+                </Text>
+              </Surface>
+              </Stack>
             </CardContent>
           </Card>
-        </div>
+        </Grid>
 
         {/* Horizontal card */}
-        <Card className="mt-4 shadow-sm">
-          <div className="flex items-center gap-4 p-6">
-            <Avatar className="h-14 w-14">
+        <Card style={{ marginTop: "1rem" }}>
+          <Inline gap="md" style={{ padding: "1.5rem" }}>
+            <Avatar size="lg">
               <AvatarImage src="https://github.com/vercel.png" alt="Team member" />
-              <AvatarFallback style={{ background: "var(--brand-gradient-primary)" }} className="text-white font-bold">
+              <AvatarFallback style={{ background: "var(--brand-gradient-primary)", color: "white", fontWeight: 700 }}>
                 JD
               </AvatarFallback>
             </Avatar>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-foreground">Jane Doe</p>
-                <p className="text-sm text-muted-foreground">Senior Designer · LyttleDevelopment</p>
-            </div>
+            <Stack gap="xs" align="start" style={{ flex: 1, minWidth: 0 }}>
+              <Text as="p" weight="semibold">Jane Doe</Text>
+              <Text as="p" size="sm" tone="muted">Senior Designer · LyttleDevelopment</Text>
+            </Stack>
             <Button variant="outline" size="sm">Follow</Button>
-          </div>
+          </Inline>
         </Card>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Tabs" description="Tabbed content panels">
-        <Tabs defaultValue="overview" className="w-full">
+        <Tabs defaultValue="overview">
           <TabsList aria-label="Project sections">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
             <TabsTrigger value="disabled" disabled>Disabled</TabsTrigger>
           </TabsList>
-          <TabsContent value="overview" className="mt-4">
+          <TabsContent value="overview" style={{ marginTop: "1rem" }}>
             <Card>
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground text-sm leading-relaxed">
+              <CardContent style={{ paddingTop: "1.5rem" }}>
+                <Text as="p" size="sm" tone="muted">
                   The overview tab displays a summary of your project. All key
                   metrics, recent activity, and quick actions are accessible from
                   this panel. Keyboard users can navigate between tabs using arrow
                   keys.
-                </p>
+                </Text>
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="analytics" className="mt-4">
+          <TabsContent value="analytics" style={{ marginTop: "1rem" }}>
             <Card>
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground text-sm">
+              <CardContent style={{ paddingTop: "1.5rem" }}>
+                <Text as="p" size="sm" tone="muted">
                   Analytics content — charts and metrics go here.
-                </p>
+                </Text>
               </CardContent>
             </Card>
           </TabsContent>
-          <TabsContent value="settings" className="mt-4">
+          <TabsContent value="settings" style={{ marginTop: "1rem" }}>
             <Card>
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground text-sm">
+              <CardContent style={{ paddingTop: "1.5rem" }}>
+                <Text as="p" size="sm" tone="muted">
                   Project settings and configuration options.
-                </p>
+                </Text>
               </CardContent>
             </Card>
           </TabsContent>
@@ -159,7 +164,7 @@ export function SectionDataDisplay() {
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Accordion" description="Expandable content sections">
-        <Accordion className="w-full max-w-lg">
+        <Accordion style={{ width: "100%", maxWidth: "32rem" }}>
           {[
             { value: "a1", trigger: "What is the Lyttle Framework?", content: "A complete design system styled with the LyttleDevelopment brand palette and optimised for WCAG AA accessibility." },
             { value: "a2", trigger: "Does it support dark mode?", content: "Yes — the dark mode IS the LyttleDevelopment aesthetic with the deep navy/purple background (#100429). Toggle it using the button in the top navigation." },
@@ -169,7 +174,7 @@ export function SectionDataDisplay() {
             <AccordionItem key={item.value} value={item.value}>
               <AccordionTrigger>{item.trigger}</AccordionTrigger>
               <AccordionContent>
-                <p className="text-muted-foreground">{item.content}</p>
+                <Text as="p" tone="muted">{item.content}</Text>
               </AccordionContent>
             </AccordionItem>
           ))}
@@ -177,7 +182,7 @@ export function SectionDataDisplay() {
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Table" description="Accessible data tables with captions">
-        <div className="rounded-md border border-border overflow-hidden">
+        <Surface padding="none" radius="md" shadow="none" style={{ overflow: "hidden" }}>
           <Table>
             <TableCaption>Recent invoices for your account</TableCaption>
             <TableHeader>
@@ -185,75 +190,72 @@ export function SectionDataDisplay() {
                 <TableHead>Invoice</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Method</TableHead>
-                <TableHead className="w-32 text-right tabular-nums">Amount</TableHead>
+                <TableHead style={{ width: "8rem", textAlign: "right" }}>Amount</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {invoices.map((inv) => (
                 <TableRow key={inv.id}>
-                  <TableCell className="font-medium">{inv.id}</TableCell>
+                  <TableCell style={{ fontWeight: 500 }}>{inv.id}</TableCell>
                   <TableCell>
-                    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${statusColors[inv.status]}`}>
-                      {inv.status}
-                    </span>
+                    <Badge variant={statusVariants[inv.status]}>{inv.status}</Badge>
                   </TableCell>
-                  <TableCell className="text-muted-foreground">{inv.method}</TableCell>
-                  <TableCell className="w-32 text-right font-mono tabular-nums">{inv.amount}</TableCell>
+                  <TableCell style={{ color: "var(--muted-foreground)" }}>{inv.method}</TableCell>
+                  <TableCell style={{ width: "8rem", textAlign: "right", fontFamily: 'var(--font-mono, "SFMono-Regular"), ui-monospace, monospace' }}>{inv.amount}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </div>
+        </Surface>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Scroll Area" description="Custom-scrolled containers">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Vertical scroll</p>
-            <ScrollArea className="h-48 rounded-md border border-border p-4">
+        <Grid columns={1} mdColumns={2} gap="md">
+          <Stack gap="xs" align="start">
+            <Text as="p" size="xs" tone="muted">Vertical scroll</Text>
+            <ScrollArea style={{ height: "12rem", border: "1px solid var(--border)", borderRadius: "var(--radius-md)", padding: "1rem" }}>
               {Array.from({ length: 20 }, (_, i) => (
-                <div key={i} className="py-1.5 border-b border-border last:border-0 text-sm text-foreground">
+                <Text key={i} as="div" size="sm" style={{ padding: "0.375rem 0", borderBottom: i === 19 ? "0" : "1px solid var(--border)" }}>
                   Item {i + 1} — scrollable content row
-                </div>
+                </Text>
               ))}
             </ScrollArea>
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground mb-2">Horizontal scroll</p>
-            <ScrollArea className="w-full rounded-md border border-border p-4">
-              <div className="flex gap-4 pb-2" style={{ width: "max-content" }}>
+          </Stack>
+          <Stack gap="xs" align="start">
+            <Text as="p" size="xs" tone="muted">Horizontal scroll</Text>
+            <ScrollArea style={{ width: "100%", border: "1px solid var(--border)", borderRadius: "var(--radius-md)", padding: "1rem" }}>
+              <Inline gap="md" style={{ width: "max-content", paddingBottom: "0.5rem" }}>
                 {Array.from({ length: 12 }, (_, i) => (
-                  <div key={i} className="h-20 w-28 rounded-lg bg-secondary flex items-center justify-center text-xs text-muted-foreground shrink-0">
-                    Card {i + 1}
-                  </div>
+                  <Surface key={i} tone="secondary" padding="md" radius="lg" shadow="none" style={{ minHeight: "5rem", width: "7rem", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Text as="span" size="xs" tone="muted">Card {i + 1}</Text>
+                  </Surface>
                 ))}
-              </div>
+              </Inline>
             </ScrollArea>
-          </div>
-        </div>
+          </Stack>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Aspect Ratio" description="Enforces consistent media aspect ratios">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Grid columns={1} mdColumns={3} gap="md">
           {[
             { label: "16:9 (Video)", ratio: 16 / 9 },
             { label: "1:1 (Square)", ratio: 1 },
             { label: "4:3 (Photo)", ratio: 4 / 3 },
           ].map((item) => (
-            <div key={item.label}>
-              <p className="text-xs text-muted-foreground mb-2">{item.label}</p>
-              <AspectRatio ratio={item.ratio} className="bg-muted rounded-lg border border-border overflow-hidden">
+            <Stack key={item.label} gap="xs" align="start">
+              <Text as="p" size="xs" tone="muted">{item.label}</Text>
+              <AspectRatio ratio={item.ratio} style={{ background: "var(--muted)", borderRadius: "var(--radius-lg)", border: "1px solid var(--border)", overflow: "hidden" }}>
                 <div
-                  className="w-full h-full flex items-center justify-center text-muted-foreground text-sm"
-                  style={{ background: "var(--brand-gradient-primary)", opacity: 0.3 }}
+                  style={{ width: "100%", height: "100%", background: "var(--brand-gradient-primary)", opacity: 0.3 }}
                 />
-                <div className="absolute inset-0 flex items-center justify-center text-foreground text-sm font-medium">
-                  {item.label}
-                </div>
+                <Inline style={{ position: "absolute", inset: 0, justifyContent: "center", alignItems: "center" }}>
+                  <Text as="span" size="sm" weight="medium">{item.label}</Text>
+                </Inline>
               </AspectRatio>
-            </div>
+            </Stack>
           ))}
-        </div>
+        </Grid>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Empty State" description="Displayed when no content is available">

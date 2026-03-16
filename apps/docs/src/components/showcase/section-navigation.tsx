@@ -9,6 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "@lyttle/ui";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@lyttle/ui";
 import { Button } from "@lyttle/ui";
+import { Grid, Inline, Stack, Text } from "@lyttle/ui/components/layout/layout";
 
 export function SectionNavigation() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -46,7 +47,7 @@ export function SectionNavigation() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Products</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 w-[400px] md:grid-cols-2">
+                <Grid as="ul" columns={1} mdColumns={2} gap="sm" style={{ width: "24rem", padding: "1rem", margin: 0, listStyle: "none" }}>
                   {[
                     { title: "Design System", desc: "Reusable component framework" },
                     { title: "Component Library", desc: "56 accessible UI primitives" },
@@ -54,30 +55,29 @@ export function SectionNavigation() {
                     { title: "Accessibility Kit", desc: "WCAG AA ready from day one" },
                   ].map((item) => (
                     <li key={item.title}>
-                      <NavigationMenuLink
-                        href="#navigation"
-                        className="block rounded-md p-3 hover:bg-accent no-underline transition-colors"
-                      >
-                        <div className="text-sm font-semibold text-foreground mb-1">{item.title}</div>
-                        <p className="text-xs text-muted-foreground">{item.desc}</p>
+                      <NavigationMenuLink href="#navigation" style={{ display: "block", padding: "0.75rem" }}>
+                        <Stack gap="xs" align="start">
+                          <Text as="div" size="sm" weight="semibold">{item.title}</Text>
+                          <Text as="p" size="xs" tone="muted">{item.desc}</Text>
+                        </Stack>
                       </NavigationMenuLink>
                     </li>
                   ))}
-                </ul>
+                </Grid>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-2 p-4 w-[200px]">
-                  <li><NavigationMenuLink href="#navigation" className="block p-2 rounded hover:bg-accent text-sm no-underline transition-colors">Documentation</NavigationMenuLink></li>
-                  <li><NavigationMenuLink href="#navigation" className="block p-2 rounded hover:bg-accent text-sm no-underline transition-colors">GitHub</NavigationMenuLink></li>
-                  <li><NavigationMenuLink href="#navigation" className="block p-2 rounded hover:bg-accent text-sm no-underline transition-colors">Changelog</NavigationMenuLink></li>
-                </ul>
+                <Stack as="ul" gap="xs" style={{ width: "12rem", padding: "1rem", margin: 0, listStyle: "none" }}>
+                  <li><NavigationMenuLink href="#navigation" style={{ display: "block", padding: "0.5rem" }}>Documentation</NavigationMenuLink></li>
+                  <li><NavigationMenuLink href="#navigation" style={{ display: "block", padding: "0.5rem" }}>GitHub</NavigationMenuLink></li>
+                  <li><NavigationMenuLink href="#navigation" style={{ display: "block", padding: "0.5rem" }}>Changelog</NavigationMenuLink></li>
+                </Stack>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="#navigation" className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground no-underline transition-colors inline-block">
+              <NavigationMenuLink href="#navigation" style={{ padding: "0.5rem 1rem", display: "inline-block" }}>
                 Pricing
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -86,15 +86,15 @@ export function SectionNavigation() {
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Dropdown Menu" description="Context-triggered dropdown with rich content">
-        <div className="flex flex-wrap gap-4">
+        <Inline gap="md">
           <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline" className="gap-2" />}>
+            <DropdownMenuTrigger render={<Button variant="outline" />}>
               Open menu
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent style={{ width: "14rem" }}>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
@@ -123,13 +123,13 @@ export function SectionNavigation() {
                 <DropdownMenuRadioItem value="viewer">Viewer</DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive focus:text-destructive">
+              <DropdownMenuItem>
                 Log out
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </div>
+        </Inline>
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Menubar" description="Application-style menu bar">
@@ -170,12 +170,13 @@ export function SectionNavigation() {
       </ShowcaseBlock>
 
       <ShowcaseBlock title="Collapsible" description="Expandable content section">
-        <Collapsible open={isOpen} onOpenChange={setIsOpen} className="max-w-sm space-y-2">
-          <div className="flex items-center justify-between">
-            <h4 className="text-sm font-semibold text-foreground">
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <Stack gap="xs" align="start" style={{ maxWidth: "24rem" }}>
+          <Inline justify="between" style={{ width: "100%" }}>
+            <Text as="h4" size="sm" weight="semibold">
               Starred repositories (3)
-            </h4>
-            <CollapsibleTrigger aria-label={isOpen ? "Collapse" : "Expand"} className="rounded-md p-1 hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            </Text>
+            <CollapsibleTrigger aria-label={isOpen ? "Collapse" : "Expand"}>
               <svg
                 width="14"
                 height="14"
@@ -184,23 +185,20 @@ export function SectionNavigation() {
                 stroke="currentColor"
                 strokeWidth="2"
                 aria-hidden="true"
-                className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+                style={{ transform: isOpen ? "rotate(180deg)" : undefined, transition: "transform 180ms ease" }}
               >
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </CollapsibleTrigger>
-          </div>
-          <div className="rounded-md border border-border px-4 py-2 text-sm font-mono text-foreground">
-            lyttle-framework
-          </div>
-          <CollapsibleContent className="space-y-2">
-            <div className="rounded-md border border-border px-4 py-2 text-sm font-mono text-foreground">
-              lyttle-website
-            </div>
-            <div className="rounded-md border border-border px-4 py-2 text-sm font-mono text-foreground">
-              lyttle-components
-            </div>
+          </Inline>
+          <Text as="code" size="sm" mono style={{ display: "block", width: "100%", padding: "0.5rem 1rem", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>lyttle-framework</Text>
+          <CollapsibleContent>
+            <Stack gap="xs" align="start" style={{ width: "100%" }}>
+              <Text as="code" size="sm" mono style={{ display: "block", width: "100%", padding: "0.5rem 1rem", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>lyttle-website</Text>
+              <Text as="code" size="sm" mono style={{ display: "block", width: "100%", padding: "0.5rem 1rem", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>lyttle-components</Text>
+            </Stack>
           </CollapsibleContent>
+          </Stack>
         </Collapsible>
       </ShowcaseBlock>
 

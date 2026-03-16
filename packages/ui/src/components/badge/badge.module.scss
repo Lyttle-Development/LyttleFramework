@@ -98,3 +98,45 @@
   }
 }
 
+.variantBrand {
+  border-color: transparent;
+  background: var(--brand-gradient-primary);
+  color: white;
+}
+
+.variantAccent {
+  border-color: transparent;
+  background: var(--brand-gradient-accent);
+  color: white;
+}
+
+.variantSuccess {
+  border-color: color-mix(in oklab, #22c55e 28%, transparent);
+  background: color-mix(in oklab, #22c55e 18%, transparent);
+  color: color-mix(in oklab, #22c55e 78%, var(--foreground));
+}
+
+.variantWarning {
+  border-color: color-mix(in oklab, #eab308 28%, transparent);
+  background: color-mix(in oklab, #eab308 18%, transparent);
+  color: color-mix(in oklab, #a16207 85%, var(--foreground));
+}
+
+.variantInfo {
+  border-color: color-mix(in oklab, #3b82f6 28%, transparent);
+  background: color-mix(in oklab, #3b82f6 18%, transparent);
+  color: color-mix(in oklab, #2563eb 84%, var(--foreground));
+}
+
+.variantMuted {
+  border-color: color-mix(in oklab, var(--border) 70%, transparent);
+  background: color-mix(in oklab, var(--muted) 72%, var(--background));
+  color: var(--muted-foreground);
+}
+
+.variantInverse {
+  border-color: rgb(255 255 255 / 0.2);
+  background: rgb(255 255 255 / 0.1);
+  color: white;
+}
+
