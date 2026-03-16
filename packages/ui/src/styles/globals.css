@@ -233,6 +233,16 @@ body {
   }
 
   [data-motion-surface],
+  [data-motion-trigger],
+  [data-motion-floating] {
+    transition:
+      transform var(--motion-fast) var(--ease-standard),
+      box-shadow var(--motion-fast) var(--ease-standard),
+      opacity var(--motion-fast) var(--ease-standard),
+      filter var(--motion-fast) var(--ease-standard);
+  }
+
+  [data-motion-surface],
   [data-motion-trigger] {
     will-change: transform;
   }
@@ -240,6 +250,31 @@ body {
   [data-motion-floating],
   [data-motion-overlay] {
     will-change: opacity, transform;
+  }
+
+  [data-motion-overlay] {
+    transition:
+      opacity var(--motion-fast) var(--ease-standard),
+      backdrop-filter var(--motion-fast) var(--ease-standard);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-motion-trigger]:not([data-motion-managed="gsap"]):is(:hover, :focus-visible, [aria-expanded="true"], [data-open], [data-popup-open], [data-active="true"], [data-state="open"], [data-checked], [aria-checked="true"]) {
+      transform: translate3d(0, calc(var(--motion-distance-xs) * -1), 0) scale(1.015);
+    }
+
+    [data-motion-trigger]:not([data-motion-managed="gsap"]):active {
+      transform: translate3d(0, 0, 0) scale(0.985);
+    }
+
+    [data-motion-surface]:not([data-motion-managed="gsap"]):is(:hover, :focus-within) {
+      transform: translate3d(0, calc(var(--motion-distance-xs) * -1), 0);
+      box-shadow: var(--shadow-md);
+    }
+
+    [data-motion-floating]:is([data-open], [data-starting-style], [data-ending-style]) {
+      filter: saturate(1.03);
+    }
   }
 
   /* Accessible focus ring — always visible, never hidden */

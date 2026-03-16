@@ -169,6 +169,7 @@ function Sidebar({
     return (
       <div
         data-slot="sidebar"
+        data-motion-surface
         className={cn(
             styles.sidebarStatic,
           className
@@ -188,6 +189,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
+          data-motion-surface
           className={styles.mobileSheetContent}
           style={
             {
@@ -214,6 +216,7 @@ function Sidebar({
       data-variant={variant}
       data-side={side}
       data-slot="sidebar"
+      data-motion-surface
     >
       {/* This is what handles the sidebar gap on desktop */}
       <div
@@ -232,6 +235,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
+          data-motion-surface
           className={styles.sidebarInner}
         >
           {children}
@@ -274,6 +278,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
     <button
       data-sidebar="rail"
       data-slot="sidebar-rail"
+      data-motion-trigger
       aria-label="Toggle Sidebar"
       tabIndex={-1}
       onClick={toggleSidebar}

@@ -19,6 +19,7 @@ function InputOTP({
       data-slot="input-otp"
       containerClassName={cn(styles.container, containerClassName)}
       spellCheck={false}
+      data-motion-surface
       className={cn(styles.input, className)}
       {...props}
     />
@@ -29,6 +30,7 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="input-otp-group"
+      data-motion-surface
       className={cn(styles.group, className)}
       {...props}
     />
@@ -49,6 +51,7 @@ function InputOTPSlot({
     <div
       data-slot="input-otp-slot"
       data-active={isActive}
+      data-motion-trigger
       className={cn(styles.slot, className)}
       {...props}
     >

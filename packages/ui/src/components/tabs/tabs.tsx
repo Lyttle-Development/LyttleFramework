@@ -72,6 +72,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsPrimitive.Tab.Props>
         ref={composeRefs(ref, motion.ref)}
         data-slot="tabs-trigger"
         data-motion-trigger
+        data-motion-managed="gsap"
         className={cn(styles.trigger, className)}
         onBlur={(event) => {
           onBlur?.(event)

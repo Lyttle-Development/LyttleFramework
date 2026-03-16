@@ -427,9 +427,9 @@ export function SectionLayout() {
                     <div className="space-y-2 text-sm text-muted-foreground">
                       <p className="font-medium text-foreground">Implementation notes</p>
                       <ul className="list-disc space-y-1 pl-5">
-                        <li>Use `tooltip` on menu buttons when `collapsible="icon"` is enabled.</li>
+                        <li>Use `tooltip` on menu buttons when `collapsible=&quot;icon&quot;` is enabled.</li>
                         <li>Pair badges and hover actions with the shared sidebar slots instead of ad-hoc absolute positioning.</li>
-                        <li>Constrain the provider with `className="h-full min-h-0"` when embedding demos inside docs pages.</li>
+                        <li>Constrain the provider with `className=&quot;h-full min-h-0&quot;` when embedding demos inside docs pages.</li>
                       </ul>
                     </div>
                   </CardContent>

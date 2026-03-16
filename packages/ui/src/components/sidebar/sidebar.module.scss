@@ -51,7 +51,7 @@
   position: relative;
   width: var(--sidebar-width);
   background: transparent;
-  transition: width 200ms linear;
+  transition: width var(--motion-slow) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
 }
 
 .desktopRoot[data-collapsible="offcanvas"] .sidebarGap {
@@ -78,7 +78,7 @@
   display: none;
   width: var(--sidebar-width);
   height: 100svh;
-  transition: left 200ms linear, right 200ms linear, width 200ms linear;
+  transition: left var(--motion-slow) var(--ease-standard), right var(--motion-slow) var(--ease-standard), width var(--motion-slow) var(--ease-standard), transform var(--motion-slow) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
 }
 
 @media (min-width: 768px) {
@@ -93,6 +93,8 @@
 
 .desktopRoot[data-side="left"][data-collapsible="offcanvas"] .sidebarContainer {
   left: calc(var(--sidebar-width) * -1);
+  transform: translateX(calc(-1 * var(--motion-distance-sm)));
+  opacity: 0.98;
 }
 
 .sidebarContainer[data-side="right"] {
@@ -101,6 +103,8 @@
 
 .desktopRoot[data-side="right"][data-collapsible="offcanvas"] .sidebarContainer {
   right: calc(var(--sidebar-width) * -1);
+  transform: translateX(var(--motion-distance-sm));
+  opacity: 0.98;
 }
 
 .desktopRoot[data-variant="floating"] .sidebarContainer,
@@ -131,6 +135,7 @@
   height: 100%;
   flex-direction: column;
   background: var(--sidebar);
+  transition: border-radius var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), filter var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
 }
 
 .desktopRoot[data-variant="floating"] .sidebarInner {
@@ -375,7 +380,8 @@
   color: var(--sidebar-foreground);
   text-align: left;
   outline: none;
-  transition: width var(--motion-fast) var(--ease-standard), height var(--motion-fast) var(--ease-standard), padding var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
+  transform-origin: center left;
+  transition: width var(--motion-fast) var(--ease-standard), height var(--motion-fast) var(--ease-standard), padding var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
 }
 
 .menuButton:hover,
@@ -384,6 +390,7 @@
 .menuButton[data-active="true"] {
   background: var(--sidebar-accent);
   color: var(--sidebar-accent-foreground);
+  transform: translateX(var(--motion-distance-xs));
 }
 
 .menuButton:focus-visible {
@@ -460,7 +467,7 @@
   padding: 0;
   color: var(--sidebar-foreground);
   outline: none;
-  transition: background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
+  transition: background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
 }
 
 .menuAction[data-size="default"] {
@@ -490,6 +497,7 @@
 .menuAction:hover {
   background: var(--sidebar-accent);
   color: var(--sidebar-accent-foreground);
+  transform: scale(1.05);
 }
 
 .menuAction > svg {
@@ -597,7 +605,7 @@
   outline: none;
   text-decoration: none;
   transform: translateX(-1px);
-  transition: background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
+  transition: background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
 }
 
 .menuSubButton:hover,
@@ -605,6 +613,18 @@
 .menuSubButton[data-active="true"] {
   background: var(--sidebar-accent);
   color: var(--sidebar-accent-foreground);
+  transform: translateX(var(--motion-distance-xs));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebarGap,
+  .sidebarContainer,
+  .sidebarInner,
+  .menuButton,
+  .menuAction,
+  .menuSubButton {
+    transition: none;
+  }
 }
 
 .menuSubButton:focus-visible {

@@ -30,6 +30,7 @@ const Card = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"di
         data-slot="card"
         data-size={size}
         data-motion-surface
+        data-motion-managed="gsap"
         className={cn(styles.card, className)}
         onBlur={(event) => {
           onBlur?.(event)

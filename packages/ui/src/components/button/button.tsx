@@ -68,6 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       ref={asChild ? ref : composeRefs(ref, motion.ref)}
       data-slot="button"
       data-motion-trigger={!asChild ? true : undefined}
+      data-motion-managed={!asChild ? "gsap" : undefined}
       className={cn(buttonVariants({ variant, size, className }))}
       onBlur={(event) => {
         onBlur?.(event)

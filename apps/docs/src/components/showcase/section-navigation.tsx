@@ -8,7 +8,6 @@ import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, Pagi
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger } from "@lyttle/ui";
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "@lyttle/ui";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@lyttle/ui";
-import { Button } from "@lyttle/ui";
 
 export function SectionNavigation() {
   const [isOpen, setIsOpen] = React.useState(false);

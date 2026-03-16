@@ -67,6 +67,7 @@ const SelectTrigger = React.forwardRef<
       data-slot="select-trigger"
       data-size={size}
       data-motion-trigger
+      data-motion-managed="gsap"
       className={cn(selectTriggerVariants({ size }), className)}
       onBlur={(event) => {
         onBlur?.(event)

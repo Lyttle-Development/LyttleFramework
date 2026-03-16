@@ -79,6 +79,7 @@ const NavigationMenuTrigger = React.forwardRef<
       ref={composeRefs(ref, motion.ref)}
       data-slot="navigation-menu-trigger"
       data-motion-trigger
+      data-motion-managed="gsap"
       className={cn(navigationMenuTriggerStyle(), className)}
       onBlur={(event) => {
         onBlur?.(event)

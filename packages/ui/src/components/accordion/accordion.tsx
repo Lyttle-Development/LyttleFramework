@@ -50,6 +50,7 @@ const AccordionTrigger = React.forwardRef<
         ref={composeRefs(ref, motion.ref)}
         data-slot="accordion-trigger"
         data-motion-trigger
+        data-motion-managed="gsap"
         className={cn(styles.trigger, className)}
         onBlur={(event) => {
           onBlur?.(event)

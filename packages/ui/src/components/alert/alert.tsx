@@ -33,6 +33,7 @@ const Alert = React.forwardRef<
       ref={composeRefs(ref, motion.ref)}
       data-slot="alert"
       data-motion-surface
+      data-motion-managed="gsap"
       role="alert"
       className={cn(alertVariants({ variant }), className)}
       onBlur={(event) => {

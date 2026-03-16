@@ -15,6 +15,7 @@ function Progress({
     <ProgressPrimitive.Root
       value={value}
       data-slot="progress"
+      data-motion-surface
       className={cn(styles.root, className)}
       {...props}
     >
@@ -31,6 +32,7 @@ function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
     <ProgressPrimitive.Track
       className={cn(styles.track, className)}
       data-slot="progress-track"
+      data-motion-surface
       {...props}
     />
   )
@@ -43,6 +45,7 @@ function ProgressIndicator({
   return (
     <ProgressPrimitive.Indicator
       data-slot="progress-indicator"
+      data-motion-floating
       className={cn(styles.indicator, className)}
       {...props}
     />

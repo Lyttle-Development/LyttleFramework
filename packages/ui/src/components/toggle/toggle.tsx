@@ -32,6 +32,7 @@ const Toggle = React.forwardRef<
       ref={composeRefs(ref, motion.ref)}
       data-slot="toggle"
       data-motion-trigger
+      data-motion-managed="gsap"
       className={cn(toggleVariants({ variant, size, className }))}
       onBlur={(event) => {
         onBlur?.(event)

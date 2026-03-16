@@ -29,6 +29,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentPropsWitho
         ref={composeRefs(ref, motion.ref)}
         data-slot="textarea"
         data-motion-trigger
+        data-motion-managed="gsap"
         className={cn(styles.textarea, className)}
         onBlur={(event) => {
           onBlur?.(event)

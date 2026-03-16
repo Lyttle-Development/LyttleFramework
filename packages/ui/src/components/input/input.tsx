@@ -26,6 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<
         type={type}
         data-slot="input"
         data-motion-trigger
+        data-motion-managed="gsap"
         className={cn(styles.input, className)}
         onBlur={(event) => {
           onBlur?.(event)
