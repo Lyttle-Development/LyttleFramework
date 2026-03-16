@@ -40,8 +40,8 @@
   --muted-foreground:        oklch(0.46 0.04  270);   /* 4.7:1 on muted bg */
 
   /* accent – coral/rose (improved contrast) */
-  --accent:                  oklch(0.93 0.03  270);
-  --accent-foreground:       oklch(0.25 0.10  275);
+  --accent:                  oklch(0.92 0.05  24);
+  --accent-foreground:       oklch(0.34 0.11  18);
 
   /* destructive – accessible red */
   --destructive:             oklch(0.54 0.21  22);    /* 4.5:1 on white */
@@ -112,8 +112,8 @@
   --muted-foreground:        oklch(0.68 0.04  270);   /* 4.5:1 on dark bg */
 
   /* accent – coral */
-  --accent:                  oklch(0.20 0.08  278);
-  --accent-foreground:       oklch(0.90 0.01  285);
+  --accent:                  oklch(0.30 0.09  24);
+  --accent-foreground:       oklch(0.96 0.01  24);
 
   /* destructive */
   --destructive:             oklch(0.70 0.19  22);    /* coral-red — visible on dark */
@@ -165,7 +165,7 @@ body {
 }
 
 html {
-  font-family: var(--font-sans), Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans, Inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
@@ -365,4 +365,16 @@ select {
 
 .skip-link:focus {
   top: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

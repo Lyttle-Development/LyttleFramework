@@ -53,6 +53,7 @@ export function Combobox({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
+        type="button"
         role="combobox"
         aria-expanded={open}
         aria-haspopup="listbox"

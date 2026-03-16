@@ -49,7 +49,7 @@ const SelectTrigger = React.forwardRef<
     size?: "sm" | "default"
   }
 >(function SelectTrigger({ className, size = "default", children, ...props }, ref) {
-  const motion = useInteractiveMotion<HTMLButtonElement>({ hoverY: -1, hoverScale: 1.01 })
+  const motion = useInteractiveMotion<HTMLButtonElement>({ disabled: true })
   const {
     onBlur,
     onFocus,
@@ -64,6 +64,7 @@ const SelectTrigger = React.forwardRef<
   return (
     <SelectPrimitive.Trigger
       ref={composeRefs(ref, motion.ref)}
+      type="button"
       data-slot="select-trigger"
       data-size={size}
       data-motion-trigger

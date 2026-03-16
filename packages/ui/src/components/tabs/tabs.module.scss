@@ -105,7 +105,9 @@
     position: absolute;
     background: var(--foreground);
     opacity: 0;
-    transition: opacity var(--motion-fast) var(--ease-standard);
+    transform: scaleX(0.6);
+    transform-origin: center;
+    transition: opacity var(--motion-fast) var(--ease-standard), transform var(--motion-normal) var(--ease-standard);
   }
 
   .tabs[data-orientation="horizontal"] .listLine &::after {
@@ -124,6 +126,7 @@
 
   .listLine &[data-active]::after {
     opacity: 1;
+    transform: scaleX(1);
   }
 }
 
@@ -131,6 +134,27 @@
   flex: 1 1 auto;
   font-size: 0.875rem;
   outline: none;
+  transform-origin: top left;
+  animation: tabs-content-in var(--motion-slow) var(--ease-standard);
+
+  &[data-starting-style],
+  &[data-ending-style],
+  &[data-closed] {
+    opacity: 0;
+    translate: 0 0.5rem;
+  }
+}
+
+@keyframes tabs-content-in {
+  from {
+    opacity: 0;
+    translate: 0 0.5rem;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 .dark .trigger[data-active] {

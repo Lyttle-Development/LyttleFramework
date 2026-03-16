@@ -10,7 +10,7 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<
   validation?: "default" | "success" | "error"
 }>(
   function Input({ className, type, validation = "default", ...props }, ref) {
-    const motion = useInteractiveMotion<HTMLInputElement>({ hoverY: -1, hoverScale: 1.005 })
+    const motion = useInteractiveMotion<HTMLInputElement>({ disabled: true })
     const {
       onBlur,
       onFocus,

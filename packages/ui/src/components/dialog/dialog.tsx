@@ -67,11 +67,11 @@ function DialogContent({
                 variant="ghost"
                 className={styles.closeButton}
                 size="icon-sm"
+                aria-label="Close dialog"
               />
             }
           >
             <XIcon />
-            <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Popup>

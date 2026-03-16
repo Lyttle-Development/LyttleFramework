@@ -18,6 +18,7 @@
 
 .indicator {
   position: relative;
+  width: 100%;
   height: 100%;
   background:
     linear-gradient(
@@ -26,8 +27,10 @@
       var(--primary) 55%,
       color-mix(in oklab, var(--primary) 78%, black)
     );
-  transition: transform var(--motion-normal) var(--ease-standard), width var(--motion-normal) var(--ease-standard), filter var(--motion-fast) var(--ease-standard);
-  will-change: transform, width;
+  transform-origin: left center;
+  transform: scaleX(var(--progress-scale, 0));
+  transition: transform var(--motion-slow) var(--ease-standard), filter var(--motion-fast) var(--ease-standard);
+  will-change: transform;
 }
 
 .indicator::after {

@@ -71,29 +71,31 @@
 
 .arrow {
   z-index: 50;
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 2px;
+  width: 0.75rem;
+  height: 0.4375rem;
   background: var(--foreground);
   fill: var(--foreground);
-  rotate: 45deg;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 
   &[data-side="bottom"] {
-    translate: 0 calc(-50% - 5px);
+    translate: 0 calc(-100% + 1px);
+    rotate: 180deg;
   }
 
   &[data-side="top"] {
-    translate: 0 calc(50% + 5px);
+    translate: 0 calc(100% - 1px);
   }
 
   &[data-side="left"],
   &[data-side="inline-start"] {
-    translate: calc(50% + 5px) 0;
+    translate: calc(100% - 1px) 0;
+    rotate: 90deg;
   }
 
   &[data-side="right"],
   &[data-side="inline-end"] {
-    translate: calc(-50% - 5px) 0;
+    translate: calc(-100% + 1px) 0;
+    rotate: -90deg;
   }
 }
 

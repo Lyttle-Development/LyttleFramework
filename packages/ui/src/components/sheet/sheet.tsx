@@ -69,11 +69,11 @@ function SheetContent({
                 variant="ghost"
                 className={styles.closeButton}
                 size="icon-sm"
+                aria-label="Close sheet"
               />
             }
           >
             <XIcon />
-            <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}
       </SheetPrimitive.Popup>

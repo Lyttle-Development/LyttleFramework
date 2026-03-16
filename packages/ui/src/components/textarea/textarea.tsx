@@ -8,11 +8,7 @@ import styles from "./textarea.module.scss"
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentPropsWithoutRef<"textarea">>(
   function Textarea({ className, ...props }, ref) {
-    const motion = useInteractiveMotion<HTMLTextAreaElement>({
-      hoverY: -1,
-      hoverScale: 1.003,
-      pressScale: 0.995,
-    })
+    const motion = useInteractiveMotion<HTMLTextAreaElement>({ disabled: true })
     const {
       onBlur,
       onFocus,

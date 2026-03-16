@@ -53,7 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   const Comp = asChild ? Slot : "button"
   const motion = useInteractiveMotion<HTMLButtonElement>({
     hoverScale: variant === "link" ? 1 : 1.015,
-    hoverY: variant === "link" ? 0 : -2,
+    hoverY: 0,
   })
   const {
     onBlur,
@@ -69,6 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   return (
     <Comp
       ref={asChild ? ref : composeRefs(ref, motion.ref)}
+      type={!asChild ? "button" : undefined}
       data-slot="button"
       data-motion-trigger={!asChild ? true : undefined}
       data-motion-managed={!asChild ? "gsap" : undefined}

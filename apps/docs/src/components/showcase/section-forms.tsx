@@ -200,7 +200,7 @@ export function SectionForms() {
                 { id: "cb3", label: "Disabled option", disabled: true },
                 { id: "cb4", label: "Disabled checked", disabled: true, defaultChecked: true },
               ].map((item) => (
-                <Inline key={item.id} gap="sm">
+                <Inline key={item.id} gap="sm" align="center" wrap={false}>
                   <Checkbox
                     id={item.id}
                     defaultChecked={item.defaultChecked}
@@ -220,19 +220,16 @@ export function SectionForms() {
             </Text>
             <RadioGroup defaultValue="standard" aria-label="Delivery speed">
               {[
-                { value: "express", label: "Express (1–2 days)", hint: "€8.99" },
-                { value: "standard", label: "Standard (3–5 days)", hint: "€3.99" },
-                { value: "free", label: "Free (7–10 days)", hint: "Free" },
+                { value: "express", label: "Express (1–2 days)" },
+                { value: "standard", label: "Standard (3–5 days)" },
+                { value: "free", label: "Free (7–10 days)" },
               ].map((item) => (
-                <Inline key={item.value} gap="sm" align="start" wrap={false}>
+                <Inline key={item.value} gap="sm" align="center" wrap={false}>
                   <RadioGroupItem
                     value={item.value}
                     id={`radio-${item.value}`}
                   />
-                  <Stack gap="xs" align="start">
-                    <Label htmlFor={`radio-${item.value}`}>{item.label}</Label>
-                    <Text as="span" size="xs" tone="muted">{item.hint}</Text>
-                  </Stack>
+                  <Label htmlFor={`radio-${item.value}`}>{item.label}</Label>
                 </Inline>
               ))}
             </RadioGroup>
@@ -336,9 +333,9 @@ export function SectionForms() {
             <Text as="p" size="xs" tone="muted">Min 8 chars, one number, one symbol.</Text>
           </Stack>
           <Surface tone="muted" padding="md" radius="lg" shadow="none">
-            <Inline gap="sm" align="start" wrap={false}>
+            <Inline gap="sm" align="center" wrap={false}>
             <Checkbox id="form-terms" required aria-required="true" />
-            <Text as="label" htmlFor="form-terms" size="sm">
+            <Text as="label" htmlFor="form-terms" size="sm" style={{ lineHeight: 1.5, cursor: "pointer" }}>
               I agree to the{" "}
               <a href="#forms">Terms of Service</a>{" "}
               and{" "}

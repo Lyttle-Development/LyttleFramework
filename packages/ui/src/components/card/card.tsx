@@ -8,11 +8,7 @@ import styles from "./card.module.scss"
 
 const Card = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div"> & { size?: "default" | "sm" }>(
   function Card({ className, size = "default", ...props }, ref) {
-    const motion = useInteractiveMotion<HTMLDivElement>({
-      hoverScale: 1.01,
-      hoverY: -3,
-      pressScale: 0.995,
-    })
+    const motion = useInteractiveMotion<HTMLDivElement>({ disabled: true })
     const {
       onBlur,
       onFocus,

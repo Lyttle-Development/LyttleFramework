@@ -4,6 +4,7 @@ import styles from "./aspect-ratio.module.scss"
 function AspectRatio({
   ratio,
   className,
+  style,
   ...props
 }: React.ComponentProps<"div"> & { ratio: number }) {
   return (
@@ -12,6 +13,7 @@ function AspectRatio({
       style={
         {
           "--ratio": ratio,
+          ...style,
         } as React.CSSProperties
       }
       className={cn(styles.aspectRatio, className)}
