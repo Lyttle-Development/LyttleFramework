@@ -1,8 +1,10 @@
 "use client"
 
+import type { CSSProperties } from "react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 import { CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon, Loader2Icon } from "lucide-react"
+import styles from "./sonner.module.scss"
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
@@ -10,22 +12,22 @@ const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
-      className="toaster group"
+      className={styles.toaster}
       icons={{
         success: (
-          <CircleCheckIcon className="size-4" />
+          <CircleCheckIcon className={styles.icon} />
         ),
         info: (
-          <InfoIcon className="size-4" />
+          <InfoIcon className={styles.icon} />
         ),
         warning: (
-          <TriangleAlertIcon className="size-4" />
+          <TriangleAlertIcon className={styles.icon} />
         ),
         error: (
-          <OctagonXIcon className="size-4" />
+          <OctagonXIcon className={styles.icon} />
         ),
         loading: (
-          <Loader2Icon className="size-4 animate-spin" />
+          <Loader2Icon className={styles.loadingIcon} />
         ),
       }}
       style={
@@ -34,11 +36,16 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-text": "var(--popover-foreground)",
           "--normal-border": "var(--border)",
           "--border-radius": "var(--radius)",
-        } as React.CSSProperties
+        } as CSSProperties
       }
       toastOptions={{
         classNames: {
-          toast: "cn-toast",
+          toast: styles.toast,
+          title: styles.title,
+          description: styles.description,
+          actionButton: styles.actionButton,
+          cancelButton: styles.cancelButton,
+          closeButton: styles.closeButton,
         },
       }}
       {...props}
@@ -47,3 +54,4 @@ const Toaster = ({ ...props }: ToasterProps) => {
 }
 
 export { Toaster }
+

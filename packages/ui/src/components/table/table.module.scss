@@ -1,0 +1,72 @@
+.container {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  caption-side: bottom;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.header tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.body tr:last-child {
+  border-bottom: 0;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: color-mix(in oklab, var(--muted) 50%, transparent);
+  font-weight: 500;
+
+  > tr:last-child {
+    border-bottom: 0;
+  }
+}
+
+.row {
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--motion-fast) var(--ease-standard);
+
+  &:hover {
+    background: color-mix(in oklab, var(--muted) 50%, transparent);
+  }
+
+  &[data-state="selected"] {
+    background: var(--muted);
+  }
+}
+
+.head,
+.cell {
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:has([role="checkbox"]) {
+    padding-right: 0;
+  }
+}
+
+.head {
+  height: 2.5rem;
+  padding: 0.5rem;
+  color: var(--foreground);
+  text-align: left;
+  font-weight: 500;
+}
+
+.cell {
+  padding: 0.5rem;
+}
+
+.caption {
+  margin-top: 1rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+

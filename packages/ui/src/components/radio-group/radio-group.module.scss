@@ -1,0 +1,75 @@
+@use "../../styles/mixins" as mixins;
+
+.radioGroup {
+  display: grid;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.item {
+  position: relative;
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--input);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--input) 30%, transparent);
+  color: var(--foreground);
+  outline: none;
+  transition: border-color var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard);
+
+  @include mixins.control-focus-ring;
+  @include mixins.disabled-state;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem -0.75rem;
+  }
+
+  &[data-checked],
+  &[aria-checked="true"] {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--destructive);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+  }
+
+  &[aria-invalid="true"][data-checked],
+  &[aria-invalid="true"][aria-checked="true"] {
+    border-color: var(--primary);
+  }
+}
+
+.indicator {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  display: inline-flex;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.dark .item {
+  background: color-mix(in oklab, var(--input) 30%, transparent);
+
+  &[aria-invalid="true"] {
+    border-color: color-mix(in oklab, var(--destructive) 50%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+  }
+}
+

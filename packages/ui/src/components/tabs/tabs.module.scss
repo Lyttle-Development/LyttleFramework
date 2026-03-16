@@ -1,0 +1,143 @@
+@use "../../styles/mixins" as mixins;
+
+.tabs {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+
+  &[data-orientation="horizontal"] {
+    flex-direction: column;
+  }
+
+  &[data-orientation="vertical"] {
+    align-items: stretch;
+  }
+}
+
+.list {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: var(--radius-lg);
+  color: var(--muted-foreground);
+
+  .tabs[data-orientation="vertical"] & {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.listDefault {
+  background: var(--muted);
+}
+
+.listLine {
+  gap: 0.25rem;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+
+  .tabs[data-orientation="vertical"] & {
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+  }
+}
+
+.trigger {
+  position: relative;
+  display: inline-flex;
+  min-height: calc(100% - 1px);
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) - 2px);
+  background: transparent;
+  color: color-mix(in oklab, var(--foreground) 60%, transparent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  transition: color var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
+
+  @include mixins.control-focus-ring;
+  @include mixins.disabled-state;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  &:hover {
+    color: var(--foreground);
+  }
+
+  &[data-active] {
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .tabs[data-orientation="vertical"] & {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .listLine & {
+    border-radius: 0;
+  }
+
+  .listLine &[data-active] {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .listLine &::after {
+    content: "";
+    position: absolute;
+    background: var(--foreground);
+    opacity: 0;
+    transition: opacity var(--motion-fast) var(--ease-standard);
+  }
+
+  .tabs[data-orientation="horizontal"] .listLine &::after {
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+  }
+
+  .tabs[data-orientation="vertical"] .listLine &::after {
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    width: 2px;
+  }
+
+  .listLine &[data-active]::after {
+    opacity: 1;
+  }
+}
+
+.content {
+  flex: 1 1 auto;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.dark .trigger[data-active] {
+  background: color-mix(in oklab, var(--input) 30%, transparent);
+}
+
+.dark .listLine .trigger[data-active] {
+  background: transparent;
+}
+

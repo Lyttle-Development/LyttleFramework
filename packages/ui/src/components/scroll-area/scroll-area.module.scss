@@ -1,0 +1,43 @@
+@use "../../styles/mixins" as mixins;
+
+.root {
+  position: relative;
+}
+
+.viewport {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  outline: none;
+  transition: color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
+
+  @include mixins.control-focus-ring;
+}
+
+.scrollbar {
+  display: flex;
+  padding: 1px;
+  touch-action: none;
+  user-select: none;
+  transition: background-color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard);
+
+  &[data-orientation="vertical"] {
+    width: 0.625rem;
+    height: 100%;
+    border-left: 1px solid transparent;
+  }
+
+  &[data-orientation="horizontal"] {
+    height: 0.625rem;
+    flex-direction: column;
+    border-top: 1px solid transparent;
+  }
+}
+
+.thumb {
+  position: relative;
+  flex: 1 1 auto;
+  border-radius: 999px;
+  background: var(--border);
+}
+

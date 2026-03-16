@@ -1,0 +1,96 @@
+@use "../../styles/mixins" as mixins;
+
+.accordion {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.item:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.header {
+  display: flex;
+}
+
+.trigger {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--foreground);
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), text-decoration-color var(--motion-fast) var(--ease-standard);
+
+  @include mixins.control-focus-ring;
+  @include mixins.disabled-state;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+}
+
+.iconDown,
+.iconUp {
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 1rem;
+  height: 1rem;
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+
+.trigger[aria-expanded="true"] .iconDown {
+  display: none;
+}
+
+.trigger:not([aria-expanded="true"]) .iconUp {
+  display: none;
+}
+
+.content {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows var(--motion-normal) var(--ease-standard), opacity var(--motion-fast) linear;
+
+  &[data-open] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+}
+
+.contentInner {
+  min-height: 0;
+  padding: 0 0 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.1875rem;
+  }
+
+  a:hover {
+    color: var(--foreground);
+  }
+}
+
