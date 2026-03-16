@@ -210,7 +210,16 @@ export function SectionLayout() {
         description="A production-style app shell showing the sidebar's best composition patterns: provider state, inset content, trigger, icon collapse, nested menus, and footer actions."
       >
         <div className="overflow-hidden rounded-lg border border-border" style={{ height: 420 }}>
-          <SidebarProvider defaultOpen className="h-full min-h-0 bg-sidebar" style={{ height: "100%", minHeight: 0 }}>
+          <SidebarProvider
+            defaultOpen
+            className="h-full min-h-0 bg-sidebar"
+            style={{
+              height: "100%",
+              minHeight: 0,
+              "--sidebar-wrapper-height": "100%",
+              "--sidebar-wrapper-min-height": "100%",
+            } as React.CSSProperties}
+          >
             <Sidebar variant="inset" collapsible="icon">
               <SidebarHeader>
                 <SidebarMenu>

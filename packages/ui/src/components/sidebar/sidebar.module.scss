@@ -1,9 +1,10 @@
  .wrapper {
-    position: relative;
+  position: relative;
   display: flex;
-  min-height: 100svh;
+  min-height: var(--sidebar-wrapper-min-height, 100svh);
+  height: var(--sidebar-wrapper-height, auto);
   width: 100%;
-    overflow: hidden;
+  min-width: 0;
 
   &:has(.desktopRoot[data-variant="inset"]) {
     background: var(--sidebar);
@@ -40,6 +41,8 @@
 .desktopRoot {
   position: relative;
   display: none;
+  height: 100%;
+  flex-shrink: 0;
   color: var(--sidebar-foreground);
 }
 
@@ -52,6 +55,8 @@
 .sidebarGap {
   position: relative;
   width: var(--sidebar-width);
+  height: 100%;
+  flex-shrink: 0;
   background: transparent;
   transition: width var(--motion-slow) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
 }
@@ -80,6 +85,7 @@
   display: none;
   width: var(--sidebar-width);
   height: 100%;
+  max-height: 100%;
   transition: left var(--motion-slow) var(--ease-standard), right var(--motion-slow) var(--ease-standard), width var(--motion-slow) var(--ease-standard), transform var(--motion-slow) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
 }
 
@@ -135,6 +141,7 @@
   display: flex;
   width: 100%;
   height: 100%;
+  min-height: 0;
   flex-direction: column;
   background: var(--sidebar);
   transition: border-radius var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), filter var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
@@ -217,8 +224,11 @@
   position: relative;
   display: flex;
   width: 100%;
+  min-width: 0;
+  min-height: 0;
   flex: 1 1 auto;
   flex-direction: column;
+  overflow: hidden;
   background: var(--background);
 }
 
