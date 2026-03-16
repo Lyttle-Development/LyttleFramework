@@ -1,0 +1,68 @@
+ .carousel {
+  position: relative;
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+}
+
+.trackHorizontal {
+  margin-left: -1rem;
+}
+
+.trackVertical {
+  margin-top: -1rem;
+  flex-direction: column;
+}
+
+.item {
+  min-width: 0;
+  flex: 0 0 100%;
+}
+
+.itemHorizontal {
+  padding-left: 1rem;
+}
+
+.itemVertical {
+  padding-top: 1rem;
+}
+
+.navButton {
+  position: absolute;
+  border-radius: 999px;
+  touch-action: manipulation;
+}
+
+.previousHorizontal,
+.nextHorizontal {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.previousHorizontal {
+  left: -3rem;
+}
+
+.nextHorizontal {
+  right: -3rem;
+}
+
+.previousVertical,
+.nextVertical {
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.previousVertical {
+  top: -3rem;
+}
+
+.nextVertical {
+  bottom: -3rem;
+}
+

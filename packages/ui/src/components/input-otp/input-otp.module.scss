@@ -1,0 +1,122 @@
+@keyframes caretBlink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+
+  20%,
+  50% {
+    opacity: 0;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+
+  &:has(:disabled) {
+    opacity: 0.5;
+  }
+}
+
+.input {
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-lg);
+
+  &:has([aria-invalid="true"]) {
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+  }
+}
+
+.slot {
+  position: relative;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--input);
+  border-right: 1px solid var(--input);
+  border-bottom: 1px solid var(--input);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1;
+  outline: none;
+  transition: border-color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard);
+
+  &:first-child {
+    border-left: 1px solid var(--input);
+    border-top-left-radius: var(--radius-lg);
+    border-bottom-left-radius: var(--radius-lg);
+  }
+
+  &:last-child {
+    border-top-right-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--destructive);
+  }
+
+  &[data-active="true"] {
+    z-index: 1;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+
+  &[data-active="true"][aria-invalid="true"] {
+    border-color: var(--destructive);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+  }
+}
+
+.fakeCaret {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.caret {
+  width: 1px;
+  height: 1rem;
+  background: var(--foreground);
+  animation: caretBlink 1s linear infinite;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+}
+
+.separatorIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dark .slot {
+  background: color-mix(in oklab, var(--input) 30%, transparent);
+}
+
+.dark .group:has([aria-invalid="true"]) {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+}
+
+.dark .slot[data-active="true"][aria-invalid="true"] {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+}
+
