@@ -226,12 +226,13 @@ export function SectionForms() {
                 { value: "standard", label: "Standard (3–5 days)", hint: "€3.99" },
                 { value: "free", label: "Free (7–10 days)", hint: "Free" },
               ].map((item) => (
-                <div key={item.value} className="flex items-center gap-3 rounded-lg border border-border/60 bg-muted/20 px-3 py-2">
+                <div key={item.value} className="flex items-start gap-3">
                   <RadioGroupItem
                     value={item.value}
                     id={`radio-${item.value}`}
+                    className="mt-0.5"
                   />
-                  <Label htmlFor={`radio-${item.value}`} className="cursor-pointer flex flex-col gap-1 leading-tight">
+                  <Label htmlFor={`radio-${item.value}`} className="cursor-pointer flex flex-col gap-1 leading-snug">
                     <span className="block">{item.label}</span>
                     <span className="text-xs text-muted-foreground">{item.hint}</span>
                   </Label>

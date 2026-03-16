@@ -1,7 +1,9 @@
  .wrapper {
+    position: relative;
   display: flex;
   min-height: 100svh;
   width: 100%;
+    overflow: hidden;
 
   &:has(.desktopRoot[data-variant="inset"]) {
     background: var(--sidebar);
@@ -72,12 +74,12 @@
 }
 
 .sidebarContainer {
-  position: fixed;
+  position: absolute;
   inset-block: 0;
   z-index: 10;
   display: none;
   width: var(--sidebar-width);
-  height: 100svh;
+  height: 100%;
   transition: left var(--motion-slow) var(--ease-standard), right var(--motion-slow) var(--ease-standard), width var(--motion-slow) var(--ease-standard), transform var(--motion-slow) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
 }
 
@@ -93,7 +95,7 @@
 
 .desktopRoot[data-side="left"][data-collapsible="offcanvas"] .sidebarContainer {
   left: calc(var(--sidebar-width) * -1);
-  transform: translateX(calc(-1 * var(--motion-distance-sm)));
+  transform: translateX(-0.5rem);
   opacity: 0.98;
 }
 
@@ -390,7 +392,6 @@
 .menuButton[data-active="true"] {
   background: var(--sidebar-accent);
   color: var(--sidebar-accent-foreground);
-  transform: translateX(var(--motion-distance-xs));
 }
 
 .menuButton:focus-visible {
@@ -613,7 +614,6 @@
 .menuSubButton[data-active="true"] {
   background: var(--sidebar-accent);
   color: var(--sidebar-accent-foreground);
-  transform: translateX(var(--motion-distance-xs));
 }
 
 @media (prefers-reduced-motion: reduce) {

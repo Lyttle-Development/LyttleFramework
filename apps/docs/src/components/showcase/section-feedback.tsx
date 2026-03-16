@@ -57,16 +57,19 @@ export function SectionFeedback() {
   } as const;
 
   React.useEffect(() => {
+    let direction = 1;
+
     const timer = window.setInterval(() => {
       setProgress((current) => {
-        if (current >= 76) {
-          window.clearInterval(timer);
-          return 76;
+        if (current >= 82) {
+          direction = -1;
+        } else if (current <= 18) {
+          direction = 1;
         }
 
-        return current + 2;
+        return current + direction * 2;
       });
-    }, 110);
+    }, 120);
 
     return () => window.clearInterval(timer);
   }, []);
@@ -79,10 +82,10 @@ export function SectionFeedback() {
     >
       <ShowcaseBlock title="Alerts" description="Informational, success, warning, and error variants">
         <div className="space-y-3">
-          <Alert className="border-primary/30 bg-primary/8 text-foreground [&>svg]:text-primary">
+          <Alert className="border-blue-500/40 bg-blue-50 text-blue-900 dark:bg-blue-950/30 dark:text-blue-100 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-300">
             <InfoIcon />
             <AlertTitle>Information</AlertTitle>
-            <AlertDescription>
+            <AlertDescription className="text-inherit/80">
               Your account settings have been saved. Changes may take a few moments
               to propagate across the system.
             </AlertDescription>
@@ -91,7 +94,7 @@ export function SectionFeedback() {
           <Alert className="border-green-500/50 bg-green-50 dark:bg-green-950/30 text-green-800 dark:text-green-200 [&>svg]:text-green-600">
             <CheckIcon />
             <AlertTitle>Success</AlertTitle>
-            <AlertDescription>
+            <AlertDescription className="text-inherit/80">
               Your order has been placed successfully. You will receive a
               confirmation email within 5 minutes.
             </AlertDescription>
@@ -100,16 +103,16 @@ export function SectionFeedback() {
           <Alert className="border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/30 text-yellow-800 dark:text-yellow-200 [&>svg]:text-yellow-600">
             <AlertTriangleIcon />
             <AlertTitle>Warning</AlertTitle>
-            <AlertDescription>
+            <AlertDescription className="text-inherit/80">
               Your subscription expires in 3 days. Please update your payment
               method to avoid interruption.
             </AlertDescription>
           </Alert>
 
-          <Alert className="border-destructive/40 bg-destructive/10 text-destructive [&>svg]:text-destructive">
+          <Alert className="border-red-500/40 bg-red-50 text-red-900 dark:bg-red-950/30 dark:text-red-100 [&>svg]:text-red-600 dark:[&>svg]:text-red-300">
             <XCircleIcon />
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription>
+            <AlertDescription className="text-inherit/80">
               We could not process your request. Please check your input and try
               again, or contact support if the issue persists.
             </AlertDescription>
