@@ -16,6 +16,7 @@ function Switch({
     <SwitchPrimitive.Root
       data-slot="switch"
       data-size={size}
+      data-motion-trigger
       className={cn(styles.switch, className)}
       {...props}
     >

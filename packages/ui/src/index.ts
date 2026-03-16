@@ -1,5 +1,16 @@
 // Utilities
 export { cn } from "./lib/utils";
+export {
+  composeRefs,
+  createAnimatedRender,
+  createSheetMotionRender,
+  floatingMotionRender,
+  modalMotionRender,
+  overlayMotionRender,
+  tooltipMotionRender,
+  useInteractiveMotion,
+  useMotionPreset,
+} from "./lib/motion";
 export { useIsMobile } from "./hooks/use-mobile";
 
 // Components

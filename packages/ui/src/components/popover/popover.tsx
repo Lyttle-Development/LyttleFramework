@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
+import { floatingMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import styles from "./popover.module.scss"
 
@@ -37,7 +38,9 @@ export function PopoverContent({
       >
         <PopoverPrimitive.Popup
           data-slot="popover-content"
+          data-motion-floating
           className={cn(styles.content, className)}
+          render={floatingMotionRender}
           {...props}
         />
       </PopoverPrimitive.Positioner>

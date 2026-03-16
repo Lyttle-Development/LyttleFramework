@@ -1,7 +1,9 @@
 "use client"
 
+import * as React from "react"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 
+import { composeRefs, useInteractiveMotion } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 import styles from "./accordion.module.scss"
@@ -26,17 +28,58 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   )
 }
 
-function AccordionTrigger({
-  className,
-  children,
-  ...props
-}: AccordionPrimitive.Trigger.Props) {
+const AccordionTrigger = React.forwardRef<
+  HTMLButtonElement,
+  AccordionPrimitive.Trigger.Props
+>(function AccordionTrigger({ className, children, ...props }, ref) {
+  const motion = useInteractiveMotion<HTMLButtonElement>({ hoverY: -1, hoverScale: 1.005 })
+  const {
+    onBlur,
+    onFocus,
+    onPointerCancel,
+    onPointerDown,
+    onPointerEnter,
+    onPointerLeave,
+    onPointerUp,
+    ...triggerProps
+  } = props
+
   return (
     <AccordionPrimitive.Header className={styles.header}>
       <AccordionPrimitive.Trigger
+        ref={composeRefs(ref, motion.ref)}
         data-slot="accordion-trigger"
+        data-motion-trigger
         className={cn(styles.trigger, className)}
-        {...props}
+        onBlur={(event) => {
+          onBlur?.(event)
+          motion.handlers.onBlur?.(event)
+        }}
+        onFocus={(event) => {
+          onFocus?.(event)
+          motion.handlers.onFocus?.(event)
+        }}
+        onPointerCancel={(event) => {
+          onPointerCancel?.(event)
+          motion.handlers.onPointerCancel?.(event)
+        }}
+        onPointerDown={(event) => {
+          onPointerDown?.(event)
+          motion.handlers.onPointerDown?.(event)
+        }}
+        onPointerEnter={(event) => {
+          onPointerEnter?.(event)
+          motion.handlers.onPointerEnter?.(event)
+        }}
+        onPointerLeave={(event) => {
+          onPointerLeave?.(event)
+          motion.handlers.onPointerLeave?.(event)
+        }}
+        onPointerUp={(event) => {
+          onPointerUp?.(event)
+          motion.handlers.onPointerUp?.(event)
+        }}
+        {...triggerProps}
       >
         {children}
         <ChevronDownIcon data-slot="accordion-trigger-icon" className={styles.iconDown} />
@@ -44,7 +87,9 @@ function AccordionTrigger({
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
-}
+})
+
+AccordionTrigger.displayName = "AccordionTrigger"
 
 function AccordionContent({
   className,

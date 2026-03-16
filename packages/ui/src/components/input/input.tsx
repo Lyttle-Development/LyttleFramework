@@ -1,17 +1,61 @@
+"use client"
+
 import * as React from "react"
 
+import { composeRefs, useInteractiveMotion } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import styles from "./input.module.scss"
 
 const Input = React.forwardRef<HTMLInputElement, React.ComponentPropsWithoutRef<"input">>(
   function Input({ className, type, ...props }, ref) {
+    const motion = useInteractiveMotion<HTMLInputElement>({ hoverY: -1, hoverScale: 1.005 })
+    const {
+      onBlur,
+      onFocus,
+      onPointerCancel,
+      onPointerDown,
+      onPointerEnter,
+      onPointerLeave,
+      onPointerUp,
+      ...inputProps
+    } = props
+
     return (
       <input
-        ref={ref}
+        ref={composeRefs(ref, motion.ref)}
         type={type}
         data-slot="input"
+        data-motion-trigger
         className={cn(styles.input, className)}
-        {...props}
+        onBlur={(event) => {
+          onBlur?.(event)
+          motion.handlers.onBlur?.(event)
+        }}
+        onFocus={(event) => {
+          onFocus?.(event)
+          motion.handlers.onFocus?.(event)
+        }}
+        onPointerCancel={(event) => {
+          onPointerCancel?.(event)
+          motion.handlers.onPointerCancel?.(event)
+        }}
+        onPointerDown={(event) => {
+          onPointerDown?.(event)
+          motion.handlers.onPointerDown?.(event)
+        }}
+        onPointerEnter={(event) => {
+          onPointerEnter?.(event)
+          motion.handlers.onPointerEnter?.(event)
+        }}
+        onPointerLeave={(event) => {
+          onPointerLeave?.(event)
+          motion.handlers.onPointerLeave?.(event)
+        }}
+        onPointerUp={(event) => {
+          onPointerUp?.(event)
+          motion.handlers.onPointerUp?.(event)
+        }}
+        {...inputProps}
       />
     )
   }

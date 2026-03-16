@@ -2,6 +2,7 @@
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip"
 
+import { tooltipMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import styles from "./tooltip.module.scss"
 
@@ -50,7 +51,9 @@ function TooltipContent({
       >
         <TooltipPrimitive.Popup
           data-slot="tooltip-content"
+          data-motion-floating
           className={cn(styles.content, className)}
+          render={tooltipMotionRender}
           {...props}
         >
           {children}

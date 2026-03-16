@@ -4,6 +4,7 @@ import * as React from "react"
 import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { CheckIcon, ChevronRightIcon } from "lucide-react"
 
+import { floatingMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import styles from "./dropdown-menu.module.scss"
 
@@ -42,7 +43,9 @@ function DropdownMenuContent({
       >
         <MenuPrimitive.Popup
           data-slot="dropdown-menu-content"
+          data-motion-floating
           className={cn(styles.content, className)}
+          render={floatingMotionRender}
           {...props}
         />
       </MenuPrimitive.Positioner>

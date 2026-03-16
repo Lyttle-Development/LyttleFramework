@@ -4,6 +4,7 @@ import * as React from "react"
 import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { cva } from "class-variance-authority"
 
+import { composeRefs, floatingMotionRender, useInteractiveMotion } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from "lucide-react"
 import styles from "./select.module.scss"
@@ -42,20 +43,60 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
   )
 }
 
-function SelectTrigger({
-  className,
-  size = "default",
-  children,
-  ...props
-}: SelectPrimitive.Trigger.Props & {
-  size?: "sm" | "default"
-}) {
+const SelectTrigger = React.forwardRef<
+  HTMLButtonElement,
+  SelectPrimitive.Trigger.Props & {
+    size?: "sm" | "default"
+  }
+>(function SelectTrigger({ className, size = "default", children, ...props }, ref) {
+  const motion = useInteractiveMotion<HTMLButtonElement>({ hoverY: -1, hoverScale: 1.01 })
+  const {
+    onBlur,
+    onFocus,
+    onPointerCancel,
+    onPointerDown,
+    onPointerEnter,
+    onPointerLeave,
+    onPointerUp,
+    ...triggerProps
+  } = props
+
   return (
     <SelectPrimitive.Trigger
+      ref={composeRefs(ref, motion.ref)}
       data-slot="select-trigger"
       data-size={size}
+      data-motion-trigger
       className={cn(selectTriggerVariants({ size }), className)}
-      {...props}
+      onBlur={(event) => {
+        onBlur?.(event)
+        motion.handlers.onBlur?.(event)
+      }}
+      onFocus={(event) => {
+        onFocus?.(event)
+        motion.handlers.onFocus?.(event)
+      }}
+      onPointerCancel={(event) => {
+        onPointerCancel?.(event)
+        motion.handlers.onPointerCancel?.(event)
+      }}
+      onPointerDown={(event) => {
+        onPointerDown?.(event)
+        motion.handlers.onPointerDown?.(event)
+      }}
+      onPointerEnter={(event) => {
+        onPointerEnter?.(event)
+        motion.handlers.onPointerEnter?.(event)
+      }}
+      onPointerLeave={(event) => {
+        onPointerLeave?.(event)
+        motion.handlers.onPointerLeave?.(event)
+      }}
+      onPointerUp={(event) => {
+        onPointerUp?.(event)
+        motion.handlers.onPointerUp?.(event)
+      }}
+      {...triggerProps}
     >
       {children}
       <SelectPrimitive.Icon
@@ -65,7 +106,9 @@ function SelectTrigger({
       />
     </SelectPrimitive.Trigger>
   )
-}
+})
+
+SelectTrigger.displayName = "SelectTrigger"
 
 function SelectContent({
   className,
@@ -94,7 +137,9 @@ function SelectContent({
         <SelectPrimitive.Popup
           data-slot="select-content"
           data-align-trigger={alignItemWithTrigger}
+          data-motion-floating
           className={cn(styles.content, className)}
+          render={floatingMotionRender}
           {...props}
         >
           <SelectScrollUpButton />

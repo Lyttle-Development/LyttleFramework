@@ -37,6 +37,7 @@ function DrawerOverlay({
   return (
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
+      data-motion-overlay
       className={cn(styles.overlay, className)}
       {...props}
     />
@@ -53,6 +54,7 @@ function DrawerContent({
       <DrawerOverlay />
       <DrawerPrimitive.Content
         data-slot="drawer-content"
+        data-motion-floating
         className={cn(styles.content, className)}
         {...props}
       >

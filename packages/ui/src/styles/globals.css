@@ -82,6 +82,12 @@
   --brand-dark-purple:       oklch(0.28 0.13  275);
   --brand-gradient-primary:  linear-gradient(135deg, oklch(0.55 0.22 270), oklch(0.28 0.13 275));
   --brand-gradient-accent:   linear-gradient(135deg, oklch(0.65 0.20 25), oklch(0.38 0.12 350));
+
+  /* motion distances */
+  --motion-distance-xs:      0.25rem;
+  --motion-distance-sm:      0.5rem;
+  --motion-distance-md:      0.75rem;
+  --motion-distance-lg:      1.25rem;
 }
 
 /* ── Dark Mode ──────────────────────────────────────────── */
@@ -218,6 +224,24 @@ body {
     line-height: 1.6;
   }
 
+  [data-motion-surface],
+  [data-motion-trigger],
+  [data-motion-floating],
+  [data-motion-overlay] {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  [data-motion-surface],
+  [data-motion-trigger] {
+    will-change: transform;
+  }
+
+  [data-motion-floating],
+  [data-motion-overlay] {
+    will-change: opacity, transform;
+  }
+
   /* Accessible focus ring — always visible, never hidden */
   :focus-visible {
     outline: 2px solid var(--ring);
@@ -245,6 +269,18 @@ body {
 
   .dark ::selection {
     background-color: oklch(0.68 0.22 270 / 40%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-motion-surface],
+    [data-motion-trigger],
+    [data-motion-floating],
+    [data-motion-overlay] {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   /* Scrollbar styling — brand themed */

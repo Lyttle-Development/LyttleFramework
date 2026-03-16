@@ -4,6 +4,7 @@ import * as React from "react"
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog"
 import { XIcon } from "lucide-react"
 
+import { createSheetMotionRender, overlayMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import { Button } from "../button"
 import styles from "./sheet.module.scss"
@@ -28,7 +29,9 @@ function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
   return (
     <SheetPrimitive.Backdrop
       data-slot="sheet-overlay"
+      data-motion-overlay
       className={cn(styles.overlay, className)}
+      render={overlayMotionRender}
       {...props}
     />
   )
@@ -44,13 +47,17 @@ function SheetContent({
   side?: "top" | "right" | "bottom" | "left"
   showCloseButton?: boolean
 }) {
+  const contentMotionRender = React.useMemo(() => createSheetMotionRender(side), [side])
+
   return (
     <SheetPortal>
       <SheetOverlay />
       <SheetPrimitive.Popup
         data-slot="sheet-content"
         data-side={side}
+        data-motion-floating
         className={cn(styles.content, className)}
+        render={contentMotionRender}
         {...props}
       >
         {children}

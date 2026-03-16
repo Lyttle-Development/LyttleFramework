@@ -4,6 +4,7 @@ import * as React from "react"
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu"
 import { CheckIcon, ChevronRightIcon } from "lucide-react"
 
+import { floatingMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import styles from "./context-menu.module.scss"
 
@@ -51,7 +52,9 @@ function ContextMenuContent({
       >
         <ContextMenuPrimitive.Popup
           data-slot="context-menu-content"
+          data-motion-floating
           className={cn(styles.content, className)}
+          render={floatingMotionRender}
           {...props}
         />
       </ContextMenuPrimitive.Positioner>

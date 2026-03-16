@@ -20,6 +20,7 @@ function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
     <RadioPrimitive.Root
       data-slot="radio-group-item"
+      data-motion-trigger
       className={cn(styles.item, className)}
       {...props}
     >

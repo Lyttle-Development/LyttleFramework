@@ -4,6 +4,7 @@ import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { XIcon } from "lucide-react"
 
+import { modalMotionRender, overlayMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import { Button } from "../button"
 import styles from "./dialog.module.scss"
@@ -31,7 +32,9 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
+      data-motion-overlay
       className={cn(styles.overlay, className)}
+      render={overlayMotionRender}
       {...props}
     />
   )
@@ -50,7 +53,9 @@ function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
+        data-motion-floating
         className={cn(styles.content, className)}
+        render={modalMotionRender}
         {...props}
       >
         {children}

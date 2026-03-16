@@ -3,6 +3,7 @@
 import * as React from "react"
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
 
+import { modalMotionRender, overlayMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import { Button } from "../button"
 import styles from "./alert-dialog.module.scss"
@@ -30,7 +31,9 @@ export function AlertDialogOverlay({
   return (
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-overlay"
+      data-motion-overlay
       className={cn(styles.overlay, className)}
+      render={overlayMotionRender}
       {...props}
     />
   )
@@ -49,7 +52,9 @@ export function AlertDialogContent({
       <AlertDialogPrimitive.Popup
         data-slot="alert-dialog-content"
         data-size={size}
+        data-motion-floating
         className={cn(styles.content, className)}
+        render={modalMotionRender}
         {...props}
       />
     </AlertDialogPortal>

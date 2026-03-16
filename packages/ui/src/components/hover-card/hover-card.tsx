@@ -2,6 +2,7 @@
 
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card"
 
+import { floatingMotionRender } from "../../lib/motion"
 import { cn } from "../../lib/utils"
 import styles from "./hover-card.module.scss"
 
@@ -38,7 +39,9 @@ export function HoverCardContent({
       >
         <PreviewCardPrimitive.Popup
           data-slot="hover-card-content"
+          data-motion-floating
           className={cn(styles.content, className)}
+          render={floatingMotionRender}
           {...props}
         />
       </PreviewCardPrimitive.Positioner>
